@@ -1,0 +1,56 @@
+=============================
+The user selects a city/state_or_province/country and gets air quality information back in a visually useful way.
+=============================
+
+1.
+The user is asked what city / province_or_state / country they want air quality information for
+
+2.
+The user puts in a query
+    
+    they select a location 
+        city
+        country
+        province/state
+    
+    Using a form of selector
+        dropdown menu
+        radio buttons
+        search bar
+    
+    hits submit 
+        or potentially checks their selection automatically
+        or confirms comparison after all their selections are made
+
+3.
+After user makes query, access the api and get the data about that city / province / country
+    
+    put the users information into the api query so it can find and produce the results they're looking for
+
+    take that information and cross reference it against air quality scale
+
+    present the data in a broadly informative way, that can let the user know the air qualtiy
+
+    produce some sort of advice or safety information for the user
+
+4.
+Allow the user to make another query, and have the process repeatable
+
+    As a stretch goal, potentially allow them to query multiple places at once for comparison.
+
+    potentially try and access the worst nearby areas to them, or cleanest areas near them
+
+
+
+STRETCH GOALS:
+comparing two cities
+presenting the data in a colour and vibrant way
+presenting weather information
+getting pictures of the cities
+getting pictures of the air quality somehow
+allowing the user to select a position on a map and get the information about that spot specifically
+
+
+
+
+
