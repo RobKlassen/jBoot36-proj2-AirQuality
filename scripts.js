@@ -1,53 +1,29 @@
-// http://api.airvisual.com/v2/cities?state={{STATE_NAME}}&country={{COUNTRY_NAME}}&key={{YOUR_API_KEY}}
-//http://api.airvisual.com/v2/nearest_city?key={{YOUR_API_KEY}}
-
-//http://api.airvisual.com/v2/city_ranking?key={{YOUR_API_KEY}}
-//http://api.airvisual.com/v2/nearest_city?lat={{LATITUDE}}&lon={{LONGITUDE}}&key={{YOUR_API_KEY}}
-//43.19609391085522, -79.22207059039704
-
-
-
-
-
-// 
-
-
-
-
-
 const app = {};
 
-// "http://api.airvisual.com/v2/city"
-// http://api.airvisual.com/v2/nearest_city
-
-
-// key: testApp.apiKey,
-// country: 'Canada',
-// state: 'Ontario',
-// city: 'Toronto'
-
-
-app.apiUrl = "http://api.airvisual.com/v2/";
+app.apiUrl = "http://api.airvisual.com/v2/nearest_city";
 app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
-// testApp.getPhotos = () => {
-//     const url = new URL(testApp.apiUrl);
-//     url.search = new URLSearchParams({
-//       key: testApp.apiKey,
-//       country: 'Canada',
-//       state: 'Ontario',
-//       city: 'Toronto'
-//     })
 
 app.getApiData = function(){
     const url = new URL(app.apiUrl);
     url.search = new URLSearchParams({
-        country: 'Canada'
-        // lat: 43.196,
-        // lon: -79.222,
-        // key: app.apiKey
+        key: app.apiKey
+        ,
+        lat: 43.196
+        ,
+        lon: -79.222
+        ,
+        country: null
+        ,
+        state: null
+        ,
+        city: null
+        ,
+        lat: null
+        ,
+        lon: null
+        // 'x-forwarded-for': , 
+        //   IP FORWARDING
     });
-
-
 
     fetch(url)
     .then(function(response){

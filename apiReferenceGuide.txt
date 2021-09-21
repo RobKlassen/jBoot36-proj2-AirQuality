@@ -1,0 +1,43 @@
+//LIST SUPPORTED COUNTRIES 
+//http://api.airvisual.com/v2/countries?key={{YOUR_API_KEY}}
+
+//LIST STATES/ PROVINCES
+//http://api.airvisual.com/v2/states?country={{COUNTRY_NAME}}&key={{YOUR_API_KEY}}
+
+//LIST CITIES IN STATE
+//http://api.airvisual.com/v2/cities?state={{STATE_NAME}}&country={{COUNTRY_NAME}}&key={{YOUR_API_KEY}}
+
+//GET NEAREST CITY IP
+// http://api.airvisual.com/v2/nearest_city?key={{YOUR_API_KEY}}
+
+// GET NEAREST CITY LONG/LAT
+// http://api.airvisual.com/v2/nearest_city?lat={{LATITUDE}}&lon={{LONGITUDE}}&key={{YOUR_API_KEY}}
+
+// GET CITY DATA
+// http://api.airvisual.com/v2/city?city=Los Angeles&state=California&country=USA&key={{YOUR_API_KEY}}
+
+// key: {{YOUR_API_KEY}}
+// country: {{COUNTRY_NAME}}
+// state: {{STATE_NAME}}
+// city: {{CITY_NAME}}
+// lat: {{LATITUDE}}
+// lon: {{LONGITUDE}}
+// key: {{YOUR_API_KEY}}
+// x-forwarded-for: 27.102.113.160 
+//   IP FORWARDING
+
+// http://api.airvisual.com/v2/
+                                // country
+                                // state
+                                // city
+                                // nearest_city
+                                // lat
+                                // lon
+                                // key
+
+
+// MY API KEY: 
+// a2793ab9-eff7-4732-9994-6e2320b1f247
+
+// JUNS API KEY:
+// f54d55f6-4ef0-4a18-baa0-cf8f3273a20a
