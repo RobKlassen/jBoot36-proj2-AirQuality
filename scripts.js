@@ -1,20 +1,50 @@
 const app = {};
 
+// http://api.airvisual.com/v2/countries?
+
+// http://api.airvisual.com/v2/states?
+    // needs country
+
+// http://api.airvisual.com/v2/cities?
+    // needs state
+    // needs country
+
+// http://api.airvisual.com/v2/city?
+    // needs state
+    // needs country
+    // needs city
+
+// http://api.airvisual.com/v2/nearest_city?
+
+
+
 app.apiUrl = "http://api.airvisual.com/v2/";
 app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
 
-app.apiUrlChunk1 = "Countries";
+
+app.apiUrlChunk1 = "countries";
+app.apiUrlChunk2 = "states";
+app.apiUrlChunk3 = "cities";
+app.apiUrlChunk4 = "city";
+
+
+app.apiUrlChunk5 = "nearest_city";
+
+
+
+
 app.apiCountry = "Canada";
 
-app.apiState = null;
-app.apiCity = null;
-app.apiLat = null;
-app.apiLon = null;
+app.apiState = "Ontario";
+app.apiCity = "Toronto";
+
+app.apiLat = 43.69309370534632;
+app.apiLon = -79.43223323783614;
 
 
 
 app.getApiData = function(){
-    const url = new URL(app.apiUrl);
+    const url = new URL(app.apiUrl + app.apiUrlChunk3);
     url.search = new URLSearchParams({
         key: app.apiKey
         ,
