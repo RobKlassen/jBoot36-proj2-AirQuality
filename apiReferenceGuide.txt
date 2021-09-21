@@ -41,3 +41,38 @@
 
 // JUNS API KEY:
 // f54d55f6-4ef0-4a18-baa0-cf8f3273a20a
+
+
+
+
+
+TORONTO
+---
+
+POLLUTION​
+aqicn: 9
+​​​​
+aqius: 27
+​​​​
+maincn: "p2"
+​​​​
+mainus: "p2"
+​​​​
+ts: "2021-09-21T01:00:00.000Z"
+
+
+​​​WEATHER
+hu: 83
+(humidity)
+​​​​
+ic: "02n"
+​​​​
+pr: 1020
+​​​​
+tp: 20
+​​​​
+ts: "2021-09-20T23:00:00.000Z"
+​​​​
+wd: 60
+​​​​
+ws: 5.66
