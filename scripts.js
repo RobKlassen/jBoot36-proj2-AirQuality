@@ -1,26 +1,32 @@
 const app = {};
 
-app.apiUrl = "http://api.airvisual.com/v2/nearest_city";
+app.apiUrl = "http://api.airvisual.com/v2/";
 app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
+
+app.apiUrlChunk1 = "Countries";
+app.apiCountry = "Canada";
+
+app.apiState = null;
+app.apiCity = null;
+app.apiLat = null;
+app.apiLon = null;
+
+
 
 app.getApiData = function(){
     const url = new URL(app.apiUrl);
     url.search = new URLSearchParams({
         key: app.apiKey
         ,
-        lat: 43.196
+        country: app.apiCountry
         ,
-        lon: -79.222
+        state: app.apiState
         ,
-        country: null
+        city: app.apiCity
         ,
-        state: null
+        lat: app.apiLat
         ,
-        city: null
-        ,
-        lat: null
-        ,
-        lon: null
+        lon: app.apiLon
         // 'x-forwarded-for': , 
         //   IP FORWARDING
     });
@@ -31,13 +37,15 @@ app.getApiData = function(){
         return response.json();
     }).then(function(jsonResponse){
         console.log(jsonResponse);
-        console.log(jsonResponse.data.current.pollution.aqicn);
+        // console.log(jsonResponse.data.current.pollution.aqicn);
     });
 }
+
 
 app.init = function(){
     app.getApiData();
 }
+
 
 app.init();
 
