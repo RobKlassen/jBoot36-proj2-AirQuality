@@ -1,47 +1,78 @@
+// http://api.airvisual.com/v2/countries?
+
+// http://api.airvisual.com/v2/states?
+    // needs country
+
+// http://api.airvisual.com/v2/cities?
+    // needs state
+    // needs country
+
+// http://api.airvisual.com/v2/city?
+    // needs state
+    // needs country
+    // needs city
+
+// http://api.airvisual.com/v2/nearest_city?
+
+// app.apiUrl = "http://api.airvisual.com/v2/";
+
 const app = {};
 
-app.apiUrl = "http://api.airvisual.com/v2/nearest_city";
-app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
+app.apiEndpointListCountries = "http://api.airvisual.com/v2/countries";
+app.apiEndpointListStates = "http://api.airvisual.com/v2/states";
+app.apiEndpointListCities = "http://api.airvisual.com/v2/cities";
+app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
+app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
 
-app.getApiData = function(){
-    const url = new URL(app.apiUrl);
+app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
+// app.apiCountry = "Canada";
+// app.apiState = "Ontario";
+// app.apiCity = "Toronto";
+// app.apiLat = 43.69309370534632;
+// app.apiLon = -79.43223323783614;
+app.apiCountry = null;
+app.apiState = null;
+app.apiCity = null;
+app.apiLat = null;
+app.apiLon = null;
+
+app.accessApi = async function(url){
+    const res = await fetch(url);
+    const jsonData = await res.json();
+    return jsonData;
+}
+
+app.getApiData = async function(endpoint){
+    const url = new URL(endpoint);
     url.search = new URLSearchParams({
         key: app.apiKey
         ,
-        lat: 43.196
+        country: app.apiCountry
         ,
-        lon: -79.222
+        state: app.apiState
         ,
-        country: null
+        city: app.apiCity
         ,
-        state: null
+        lat: app.apiLat
         ,
-        city: null
-        ,
-        lat: null
-        ,
-        lon: null
-        // 'x-forwarded-for': , 
-        //   IP FORWARDING
+        lon: app.apiLon
     });
 
-    fetch(url)
-    .then(function(response){
-        console.log(response);
-        return response.json();
-    }).then(function(jsonResponse){
-        console.log(jsonResponse);
-        console.log(jsonResponse.data.current.pollution.aqicn);
-    });
+    app.accessApi(url)
+    .then(function(apiObject){
+        let selectList = apiObject.data;
+        selectList.forEach(function(listItem){
+            console.log(listItem);
+        });
+    })
 }
 
 app.init = function(){
-    app.getApiData();
+    app.getApiData(app.apiEndpointListCountries);
 }
 
 app.init();
 
-// test
 
 
 
