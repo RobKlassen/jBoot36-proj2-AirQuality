@@ -5,18 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <header>
-        <h1>Air Quality Project</h1>
+    <header class="header">
+        <div class="header__container wrapper">
+            <h1>Air Quality Project</h1>
+            <!--Will change the title-->
+            <form action="" class="form">
+                <fieldset class="form__fieldset">
+                    <legend class="form__legend">What is your city's air quality today?</legend>
+                    <label for="countrySelection">Select the country</label>
+                    <select name="country" id="citySelection">
+                        <!-- Dynamically add options -->
+                    </select>
+                    <label for="stateSelection">Select the state</label>
+                    <select name="state" id="stateSelection">
+                        <!-- Dynamically add options -->
+                    </select>
+                    <label for="citySelection">Select the city</label>
+                    <select name="city" id="citySelection">
+                        <!-- Dynamically add options -->
+                    </select>
+                </fieldset>
+            </form>
+        </div>
     </header>
-
-
-    <main>
-
+  <!--
         <select name="selectCountry" id="selectCountry">
             <option value=test1>Option 1</option>
             <option value=test2>Option 2</option>
@@ -35,14 +52,9 @@
             <option value=test3>Option 3</option>
             <option value=test4>Option 4</option>
         </select>
+ -->
 
-        
-        <!-- <form action="">
-            <label for="text">Search a city</label>
-            <input type="text" id="text">
-            <button>Submit</button>
-        </form> -->
-    </main>
+
 
 
     <footer>
