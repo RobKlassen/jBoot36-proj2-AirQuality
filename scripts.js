@@ -42,38 +42,84 @@ app.accessApi = async function(url){
     return jsonData;
 }
 
-app.getApiData = async function(endpoint){
+app.getApiData = async function(endpoint, selector, step){
     const url = new URL(endpoint);
     url.search = new URLSearchParams({
-        key: app.apiKey
-        ,
-        country: app.apiCountry
-        ,
-        state: app.apiState
-        ,
-        city: app.apiCity
-        ,
-        lat: app.apiLat
-        ,
+        key: app.apiKey,
+        country: app.apiCountry,
+        state: app.apiState,
+        city: app.apiCity,
+        lat: app.apiLat,
         lon: app.apiLon
     });
 
     app.accessApi(url)
     .then(function(apiObject){
+
         let selectList = apiObject.data;
+
         selectList.forEach(function(listItem){
+            const selection = document.querySelector(selector) 
+            const options = document.createElement('option');
+
+            if (step == "getCountries"){
+                options.innerText = listItem.country;
+                options.value = listItem.country;
+            }
+            else if (step == "getStates"){
+                options.innerText = listItem.state;
+                options.value = listItem.state;
+            }
+            else if (step == "getCities"){
+                options.innerText = listItem.city;
+                options.value = listItem.city;
+            }
+            else{
+                console.log("ERRORS ALL AROUND");
+            }
+            selection.append(options);
             console.log(listItem);
         });
     })
 }
 
-app.init = function(){
-    app.getApiData(app.apiEndpointListCountries);
+app.getSelection = function(){
+    
+    document.querySelector('#countrySelection').addEventListener('change', function(){
+        app.apiCountry = this.value;
+        app.getApiData(app.apiEndpointListStates, '#stateSelection', "getStates")
+    });
+
+    document.querySelector('#stateSelection').addEventListener('change', function(){
+        app.apiState = this.value;
+        app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities")
+    });
+
 }
+
+app.init = function(){
+    app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries");
+    app.getSelection();
+}
+
 
 app.init();
 
 
+
+
+
+// app.accessApi(url)
+//     .then(function(apiObject){
+//         let selectList = apiObject.data;
+//         selectList.forEach(function(listItem){
+//             const countrySelection = document.querySelector('#countrySelection') 
+//             const options = document.createElement('option');
+
+//             // options.innerText = listItem;
+//             console.log(options);
+//         });
+//     })
 
 
 
