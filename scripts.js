@@ -80,7 +80,7 @@ app.getApiData = async function(endpoint, selector, step){
             selection.append(options);
             console.log(listItem);
         });
-    })
+    });
 }
 
 app.getSelection = function(){
