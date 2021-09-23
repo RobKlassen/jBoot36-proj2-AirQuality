@@ -16,6 +16,16 @@
 
 // app.apiUrl = "http://api.airvisual.com/v2/";
 
+
+// TEST SEARCH PARAMS
+// app.apiCountry = "Canada";
+// app.apiState = "Ontario";
+// app.apiCity = "Toronto";
+// app.apiLat = 43.69309370534632;
+// app.apiLon = -79.43223323783614;
+
+
+
 const app = {};
 
 app.apiEndpointListCountries = "http://api.airvisual.com/v2/countries";
@@ -25,11 +35,7 @@ app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
 app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
 
 app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
-// app.apiCountry = "Canada";
-// app.apiState = "Ontario";
-// app.apiCity = "Toronto";
-// app.apiLat = 43.69309370534632;
-// app.apiLon = -79.43223323783614;
+
 app.apiCountry = null;
 app.apiState = null;
 app.apiCity = null;
@@ -90,29 +96,19 @@ app.getApiData = async function(endpoint, selector, step){
                     console.log("ERRORS ALL AROUND");
                 }
                 selection.append(options);
+
             });
         }
     });
 }
 
 app.disablerFunc = function(dropdown){
-    console.log(dropdown);
     dropdown.disabled = true;
-    // dropdown.empty();
-    const options = document.querySelector(dropdown[`option`]);
-    console.log(options);
-    // if (options === null){
-    //     console.log("it was null");
-    // } else {
-    //     options.empty();
-    // }
-        // cityDropdown.disabled = true;
-        // console.log(cityDropdown);
-        // citySelector.disabled = true;
-        // stateSelector.value="";
-        // citySelector.value="";
-        // stateSelector.innerHTML = "";
-        // citySelector.innerHTML = "";
+
+    while (dropdown.hasChildNodes()) {  
+        dropdown.removeChild(dropdown.firstChild);
+    }
+    //CODE FROM W3SCHOOLS
 }
 
 app.clearSelection = function(stateSelector, citySelector){
@@ -137,13 +133,14 @@ app.getSelection = function(){
     document.querySelector('#stateSelection').addEventListener('change', function(){
         app.apiState = this.value;
         app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities");
-        app.clearSelection(null, '#citySelection');
+        app.clearSelection(false, '#citySelection');
+        
     });
 
     document.querySelector('#citySelection').addEventListener('change', function(){
         app.apiCity = this.value;
         app.getApiData(app.apiEndpointCityInfo, null, "getInfo");
-        app.clearSelection(null, null);
+        app.clearSelection(false, false);
     });
 
 }
@@ -156,133 +153,3 @@ app.init = function(){
 
 
 app.init();
-
-
-
-
-
-// app.accessApi(url)
-//     .then(function(apiObject){
-//         let selectList = apiObject.data;
-//         selectList.forEach(function(listItem){
-//             const countrySelection = document.querySelector('#countrySelection') 
-//             const options = document.createElement('option');
-
-//             // options.innerText = listItem;
-//             console.log(options);
-//         });
-//     })
-
-
-
-
-
-
-// Object { city: "Burlington", state: "Ontario", country: "Canada", location: {…}, current: {…} }
-// ​
-// city: "Burlington"
-
-// country: "Canada"
-
-// current: Object { weather: {…}, pollution: {…} }
-
-// pollution: Object { ts: "2021-09-22T23:00:00.000Z", aqius: 2, mainus: "p2", … }
-
-// weather: Object { ts: "2021-09-22T23:00:00.000Z", tp: 14, pr: 1006, … }
-
-// <prototype>: Object { … }
-
-// location: Object { type: "Point", coordinates: (2) […] }
-
-// state: "Ontario"
-
-// <prototype>: Object { … }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const galleryApp = {}
-
-// galleryApp.apiUrl = "https://api.unsplash.com/photos";
-// galleryApp.apiKey = "24hJVNhuvMBZwTqryXAtdpqiPpvgcpO9tR4b6ZKelUo";
-// // galleryApp.apiSecretKey = "v_s67e8KHCRfNAg28SknUvoxFOxmI6TZVp9YsIn9Fd0";
-
-// galleryApp.getPhotos = function(){
-//     const url = new URL(galleryApp.apiUrl);
-//     url.search = new URLSearchParams({
-//         client_id: galleryApp.apiKey
-//         // client_idSecret: galleryApp.apiSecretKey,
-//     });
-
-//     fetch(url)
-//     .then(function(response){
-
-//         return response.json();
-//     }).then(function(jsonResponse){
-//         console.log(jsonResponse);
-//     });
-// }
-
-
-
-
-// galleryApp.init = function(){
-//     galleryApp.getPhotos();
-// }
-
-// galleryApp.init();
-
-
-
-
-
-
-
-
-
-
-// fetch('https://www.septastats.com/api/current/system/latest')
-//     .then(function(response){
-//         return response.json();
-//     }).then(function(jsonData){
-
-//         // const route = jsonData.data[0].id;
-//         // const startStation = jsonData.data[0].source;
-//         // const endStation = jsonData.data[0].dest;
-//         // const minsLate = jsonData.data[0].late;
-
-//         // const paragraphEl = document.querySelector('p.nextDeparture');
-
-//         // paragraphEl.innerHTML = `The ${route} train from ${startStation} to ${endStation} is running ${minsLate} minutes late.`
-
-
-//         console.log(jsonData.data);
-        
-//         let paragraphEl = document.querySelector('p.nextDeparture');
-
-//         for (i=0; i<jsonData.data.length; i++){
-
-//             let trainDest2 = jsonData.data[i].dest;
-//             let trainLate2 = jsonData.data[i].late;
-
-//             console.log(`The train heading to ${trainDest2} and is ${trainLate2} minutes late`);
-//         }
-//     });
-
