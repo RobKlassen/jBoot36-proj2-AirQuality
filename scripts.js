@@ -59,12 +59,7 @@ app.getApiData = async function(endpoint, selector, step){
         let selectList = apiObject.data;
 
         if (step == "getInfo") {
-            app.printInfo(selectList)
-            // console.log(selectList);
-            // console.log(selectList.city);
-            // console.log(selectList.country);
-            // console.log("aqius is", selectList.current.pollution.aqius);
-            // console.log("humidity is", selectList.current.weather.hu);
+            app.printInfo(selectList);
         }
         else {   
             selectList.forEach(function(listItem){
@@ -111,21 +106,18 @@ app.getSelection = function(){
     document.querySelector('#citySelection').addEventListener('change', function(){
         app.apiCity = this.value;
         app.getApiData(app.apiEndpointCityInfo, null, "getInfo")
+
     });
 
 }
 
 app.printInfo = function(city) {
 
-    console.log(city);
+
     console.log(city.city);
     console.log(city.country);
     console.log("aqius is", city.current.pollution.aqius);
     console.log("humidity is", city.current.weather.hu);
-
-
-
-
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
     const mainSelection = document.querySelector('.main__selection');
@@ -135,6 +127,13 @@ app.printInfo = function(city) {
     main.classList.remove('displayNone');
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
+    mainUlElement.innerHTML = `
+    <li>${city.city}</li>
+    <li>${city.country}</li>
+    <li>${city.current.pollution.aqius}</li>
+    <li>${city.current.weather.hu}</li>
+    `
+    
 }
 
 app.init = function(){
