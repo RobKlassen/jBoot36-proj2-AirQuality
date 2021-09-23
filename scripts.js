@@ -89,7 +89,6 @@ app.getApiData = async function(endpoint, selector, step){
                     console.log("ERRORS ALL AROUND");
                 }
                 selection.append(options);
-                console.log(listItem);
             });
         }
     });
