@@ -64,6 +64,14 @@ app.getApiData = async function(endpoint, selector, step){
 
         let selectList = apiObject.data;
 
+        const nextSelection = document.querySelector(selector);
+        const defaultOption = document.createElement('option')
+        defaultOption.selected = true;
+        defaultOption.disabled = true;
+        defaultOption.defaultSelected = true;
+        defaultOption.hidden = true;
+        defaultOption.text = "please select from dropdown";
+
         if (step == "getInfo") {
             console.log(selectList);
             console.log(selectList.city);
@@ -71,11 +79,12 @@ app.getApiData = async function(endpoint, selector, step){
             console.log("aqius is", selectList.current.pollution.aqius);
             console.log("humidity is", selectList.current.weather.hu);
         }
+//<option selected disabled>Choose here</option>
+
         else {   
             selectList.forEach(function(listItem){
-                const selection = document.querySelector(selector) 
+                nextSelection.disabled = false;
                 const options = document.createElement('option');
-                selection.disabled = false;
 
                 if (step == "getCountries"){
                     options.innerText = listItem.country;
@@ -95,31 +104,20 @@ app.getApiData = async function(endpoint, selector, step){
                 else{
                     console.log("ERRORS ALL AROUND");
                 }
-                selection.append(options);
-
+                nextSelection.append(options);
             });
+            console.log("here we are");
+            nextSelection.append(defaultOption)
         }
     });
 }
 
-app.disablerFunc = function(dropdown){
+app.clearSelection = function(elementToSelect){
+    const dropdown = document.querySelector(elementToSelect)
     dropdown.disabled = true;
-
     while (dropdown.hasChildNodes()) {  
         dropdown.removeChild(dropdown.firstChild);
     }
-    //CODE FROM W3SCHOOLS
-}
-
-app.clearSelection = function(stateSelector, citySelector){
-    const stateDropdown = document.querySelector(stateSelector)
-    const cityDropdown = document.querySelector(citySelector)
-    if (stateSelector){
-        app.disablerFunc(stateDropdown);
-    }
-    if (citySelector){
-        app.disablerFunc(cityDropdown);
-    }  
 }
 
 app.getSelection = function(){
@@ -127,27 +125,27 @@ app.getSelection = function(){
     document.querySelector('#countrySelection').addEventListener('change', function(){
         app.apiCountry = this.value;
         app.getApiData(app.apiEndpointListStates, '#stateSelection', "getStates")
-        app.clearSelection('#stateSelection', '#citySelection');
+        app.clearSelection('#stateSelection');
+        app.clearSelection('#citySelection');
     });
 
     document.querySelector('#stateSelection').addEventListener('change', function(){
         app.apiState = this.value;
         app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities");
-        app.clearSelection(false, '#citySelection');
-        
+        app.clearSelection('#citySelection');
     });
 
     document.querySelector('#citySelection').addEventListener('change', function(){
         app.apiCity = this.value;
         app.getApiData(app.apiEndpointCityInfo, null, "getInfo");
-        app.clearSelection(false, false);
     });
 
 }
 
 app.init = function(){
     app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries");
-    app.clearSelection('#stateSelection', '#citySelection');
+    app.clearSelection('#stateSelection');
+    app.clearSelection('#citySelection');
     app.getSelection();
 }
 
