@@ -274,6 +274,10 @@ html {
       -ms-flex-align: center;
           align-items: center;
 }
+.header__animation {
+  -webkit-animation: disappear 0.5s ease-in-out forwards;
+          animation: disappear 0.5s ease-in-out forwards;
+}
 
 .form__fieldset {
   border: none;
@@ -305,6 +309,10 @@ html {
 .main__heading {
   text-align: center;
   margin: 2%;
+}
+
+.displayNone {
+  display: none;
 }
 
 @-webkit-keyframes disappear {

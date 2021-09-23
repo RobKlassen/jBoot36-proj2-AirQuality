@@ -116,8 +116,15 @@ app.getSelection = function(){
 }
 
 app.printInfo = function() {
-    document.querySelector('.container').css('animation', 'disappear .5s ease-in-out forwards');
-    app.$dogSelection.addClass('dogContainer').removeClass('displayNone');
+    const header = document.querySelector('.header');
+    const main = document.querySelector('.main');
+    const mainSelection = document.querySelector('.main__selection');
+
+    header.classList.add('header__animation');
+    mainSelection.classList.add('main__container');
+    main.classList.remove('displayNone');
+
+    const mainUlElement = document.querySelector('.main__apiInfo ul');
 }
 
 app.init = function(){
