@@ -58,28 +58,40 @@ app.getApiData = async function(endpoint, selector, step){
 
         let selectList = apiObject.data;
 
-        selectList.forEach(function(listItem){
-            const selection = document.querySelector(selector) 
-            const options = document.createElement('option');
-
-            if (step == "getCountries"){
-                options.innerText = listItem.country;
-                options.value = listItem.country;
-            }
-            else if (step == "getStates"){
-                options.innerText = listItem.state;
-                options.value = listItem.state;
-            }
-            else if (step == "getCities"){
-                options.innerText = listItem.city;
-                options.value = listItem.city;
-            }
-            else{
-                console.log("ERRORS ALL AROUND");
-            }
-            selection.append(options);
-            console.log(listItem);
-        });
+        if (step == "getInfo") {
+            console.log(selectList);
+            console.log(selectList.city);
+            console.log(selectList.country);
+            console.log("aqius is", selectList.current.pollution.aqius);
+            console.log("humidity is", selectList.current.weather.hu);
+        }
+        else {   
+            selectList.forEach(function(listItem){
+                const selection = document.querySelector(selector) 
+                const options = document.createElement('option');
+    
+                if (step == "getCountries"){
+                    options.innerText = listItem.country;
+                    options.value = listItem.country;
+                }
+                else if (step == "getStates"){
+                    options.innerText = listItem.state;
+                    options.value = listItem.state;
+                }
+                else if (step == "getCities"){
+                    options.innerText = listItem.city;
+                    options.value = listItem.city;
+                }
+                else if (step =="getInfo"){
+                    console.log(listItem);
+                }
+                else{
+                    console.log("ERRORS ALL AROUND");
+                }
+                selection.append(options);
+                console.log(listItem);
+            });
+        }
     });
 }
 
@@ -93,6 +105,11 @@ app.getSelection = function(){
     document.querySelector('#stateSelection').addEventListener('change', function(){
         app.apiState = this.value;
         app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities")
+    });
+
+    document.querySelector('#citySelection').addEventListener('change', function(){
+        app.apiCity = this.value;
+        app.getApiData(app.apiEndpointCityInfo, null, "getInfo")
     });
 
 }
@@ -126,7 +143,25 @@ app.init();
 
 
 
+// Object { city: "Burlington", state: "Ontario", country: "Canada", location: {…}, current: {…} }
+// ​
+// city: "Burlington"
 
+// country: "Canada"
+
+// current: Object { weather: {…}, pollution: {…} }
+
+// pollution: Object { ts: "2021-09-22T23:00:00.000Z", aqius: 2, mainus: "p2", … }
+
+// weather: Object { ts: "2021-09-22T23:00:00.000Z", tp: 14, pr: 1006, … }
+
+// <prototype>: Object { … }
+
+// location: Object { type: "Point", coordinates: (2) […] }
+
+// state: "Ontario"
+
+// <prototype>: Object { … }
 
 
 
