@@ -69,7 +69,8 @@ app.getApiData = async function(endpoint, selector, step){
             selectList.forEach(function(listItem){
                 const selection = document.querySelector(selector) 
                 const options = document.createElement('option');
-    
+                selection.disabled = false;
+
                 if (step == "getCountries"){
                     options.innerText = listItem.country;
                     options.value = listItem.country;
@@ -94,27 +95,62 @@ app.getApiData = async function(endpoint, selector, step){
     });
 }
 
+app.disablerFunc = function(dropdown){
+    console.log(dropdown);
+    dropdown.disabled = true;
+    // dropdown.empty();
+    const options = document.querySelector(dropdown[`option`]);
+    console.log(options);
+    // if (options === null){
+    //     console.log("it was null");
+    // } else {
+    //     options.empty();
+    // }
+        // cityDropdown.disabled = true;
+        // console.log(cityDropdown);
+        // citySelector.disabled = true;
+        // stateSelector.value="";
+        // citySelector.value="";
+        // stateSelector.innerHTML = "";
+        // citySelector.innerHTML = "";
+}
+
+app.clearSelection = function(stateSelector, citySelector){
+    const stateDropdown = document.querySelector(stateSelector)
+    const cityDropdown = document.querySelector(citySelector)
+    if (stateSelector){
+        app.disablerFunc(stateDropdown);
+    }
+    if (citySelector){
+        app.disablerFunc(cityDropdown);
+    }  
+}
+
 app.getSelection = function(){
     
     document.querySelector('#countrySelection').addEventListener('change', function(){
         app.apiCountry = this.value;
         app.getApiData(app.apiEndpointListStates, '#stateSelection', "getStates")
+        app.clearSelection('#stateSelection', '#citySelection');
     });
 
     document.querySelector('#stateSelection').addEventListener('change', function(){
         app.apiState = this.value;
-        app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities")
+        app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities");
+        app.clearSelection(null, '#citySelection');
     });
 
     document.querySelector('#citySelection').addEventListener('change', function(){
         app.apiCity = this.value;
-        app.getApiData(app.apiEndpointCityInfo, null, "getInfo")
+        app.getApiData(app.apiEndpointCityInfo, null, "getInfo");
+        app.clearSelection(null, null);
     });
 
 }
 
 app.init = function(){
     app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries");
+    app.clearSelection('#stateSelection', '#citySelection');
     app.getSelection();
 }
 
