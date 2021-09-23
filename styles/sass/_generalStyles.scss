@@ -28,3 +28,17 @@
     }
 
 }
+
+.main {
+    &__container {
+        background-color: grey;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50vw;
+        height: 30vw;
+        border-radius: 2rem;
+        animation: appear 1.5s ease-in-out forwards;
+    }
+}
