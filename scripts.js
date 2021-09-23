@@ -133,7 +133,6 @@ app.printInfo = function(city) {
     <li>${city.current.pollution.aqius}</li>
     <li>${city.current.weather.hu}</li>
     `
-    
 }
 
 app.init = function(){
