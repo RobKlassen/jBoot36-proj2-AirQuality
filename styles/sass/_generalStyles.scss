@@ -1,3 +1,8 @@
+body {
+  background: linear-gradient(150deg, #8ba3fa, #bdc8f1);
+  min-height: 100vh;
+}
+
 .wrapper {
     width: 80%;
     height: 100%;
@@ -7,6 +12,42 @@
 
 .header {
     height: 80vh;
+
+    &__curve {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg);
+
+      & svg {
+        position: relative;
+        display: block;
+        width: calc(129% + 1.3px);
+        height: 60px;
+      }
+
+      &-transparent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+        opacity: 0.3;
+
+        & svg {
+          position: relative;
+          display: block;
+          width: calc(161% + 1.3px);
+          height: 130px;
+        }
+      }
+    }
+
 
     &__container {
         display: flex;
@@ -54,6 +95,10 @@
 
 .displayNone {
     display: none;
+}
+
+.shape-fill {
+  fill: #fff;
 }
 
 @keyframes disappear {
