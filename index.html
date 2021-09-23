@@ -18,14 +18,14 @@
                 <fieldset class="form__fieldset">
                     <legend class="form__legend">What is your city's air quality today?</legend>
                     <label for="countrySelection">Select the country</label>
-                    <select name="country" id="countrySelection">
+                    <select name="country" id="countrySelection" disabled>
                         <!-- Dynamically add options -->
                     </select>
                     <label for="stateSelection">Select the state</label>
-                    <select name="state" id="stateSelection">
+                    <select name="state" id="stateSelection" disabled>
                     </select>
                     <label for="citySelection">Select the city</label>
-                    <select name="city" id="citySelection">
+                    <select name="city" id="citySelection" disabled>
                         <!-- Dynamically add options -->
                     </select>
                 </fieldset>
@@ -33,26 +33,16 @@
         </div>
     </header>
 
-  <!--
-        <select name="selectCountry" id="selectCountry">
-            <option value=test1>Option 1</option>
-            <option value=test2>Option 2</option>
-            <option value=test3>Option 3</option>
-            <option value=test4>Option 4</option>
-        </select>
-        <select name="selectState" id="selectState">
-            <option value=test1>Option 1</option>
-            <option value=test2>Option 2</option>
-            <option value=test3>Option 3</option>
-            <option value=test4>Option 4</option>
-        </select>
-        <select name="selectCity" id="selectCity">
-            <option value=test1>Option 1</option>
-            <option value=test2>Option 2</option>
-            <option value=test3>Option 3</option>
-            <option value=test4>Option 4</option>
-        </select>
- -->
+    <main class="main wrapper displayNone">
+        <div class="main__selection">
+            <h2 class="main__heading">Air Quality/Temperature/Humidity</h2>
+            <div class="main__apiInfo">
+                <ul>
+                    <!-- dynamically add info -->
+                </ul>
+            </div>
+        </div>
+    </main>
 
 
 

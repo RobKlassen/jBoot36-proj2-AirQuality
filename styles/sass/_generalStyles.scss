@@ -14,6 +14,10 @@
         justify-content: center;
         align-items: center;
     }
+
+    &__animation {
+        animation: disappear .5s ease-in-out forwards
+    }
 }
 
 .form {
@@ -28,3 +32,46 @@
     }
 
 }
+
+.main {
+    &__container {
+        background-color: grey;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50vw;
+        height: 30vw;
+        border-radius: 2rem;
+        animation: appear 1.5s ease-in-out forwards;
+    }
+
+    &__heading {
+        text-align: center;
+        margin: 2%;
+    }
+}
+
+.displayNone {
+    display: none;
+}
+
+@keyframes disappear {
+    0% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }

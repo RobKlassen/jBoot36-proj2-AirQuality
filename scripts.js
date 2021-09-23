@@ -69,6 +69,7 @@ app.getApiData = async function(endpoint, selector, step){
             selectList.forEach(function(listItem){
                 const selection = document.querySelector(selector) 
                 const options = document.createElement('option');
+                selection.disabled = false;
     
                 if (step == "getCountries"){
                     options.innerText = listItem.country;
@@ -109,8 +110,21 @@ app.getSelection = function(){
     document.querySelector('#citySelection').addEventListener('change', function(){
         app.apiCity = this.value;
         app.getApiData(app.apiEndpointCityInfo, null, "getInfo")
+        app.printInfo()
     });
 
+}
+
+app.printInfo = function() {
+    const header = document.querySelector('.header');
+    const main = document.querySelector('.main');
+    const mainSelection = document.querySelector('.main__selection');
+
+    header.classList.add('header__animation');
+    mainSelection.classList.add('main__container');
+    main.classList.remove('displayNone');
+
+    const mainUlElement = document.querySelector('.main__apiInfo ul');
 }
 
 app.init = function(){
