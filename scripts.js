@@ -73,11 +73,7 @@ app.getApiData = async function(endpoint, selector, step){
         defaultOption.text = "please select from dropdown";
 
         if (step == "getInfo") {
-            console.log(selectList);
-            console.log(selectList.city);
-            console.log(selectList.country);
-            console.log("aqius is", selectList.current.pollution.aqius);
-            console.log("humidity is", selectList.current.weather.hu);
+            app.printInfo(selectList);
         }
 //<option selected disabled>Choose here</option>
 
@@ -86,6 +82,8 @@ app.getApiData = async function(endpoint, selector, step){
                 nextSelection.disabled = false;
                 const options = document.createElement('option');
 
+                selection.disabled = false;
+    
                 if (step == "getCountries"){
                     options.innerText = listItem.country;
                     options.value = listItem.country;
@@ -137,9 +135,36 @@ app.getSelection = function(){
 
     document.querySelector('#citySelection').addEventListener('change', function(){
         app.apiCity = this.value;
+
         app.getApiData(app.apiEndpointCityInfo, null, "getInfo");
+        app.getApiData(app.apiEndpointCityInfo, null, "getInfo")   
+
     });
 
+}
+
+app.printInfo = function(city) {
+
+    console.log(city.city);
+    console.log(city.country);
+    console.log("aqius is", city.current.pollution.aqius);
+    console.log("humidity is", city.current.weather.hu);
+
+    const header = document.querySelector('.header');
+    const main = document.querySelector('.main');
+    const mainSelection = document.querySelector('.main__selection');
+
+    header.classList.add('header__animation');
+    mainSelection.classList.add('main__container');
+    main.classList.remove('displayNone');
+
+    const mainUlElement = document.querySelector('.main__apiInfo ul');
+    mainUlElement.innerHTML = `
+    <li>${city.city}</li>
+    <li>${city.country}</li>
+    <li>${city.current.pollution.aqius}</li>
+    <li>${city.current.weather.hu}</li>
+    `
 }
 
 app.init = function(){

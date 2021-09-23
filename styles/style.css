@@ -249,6 +249,11 @@ html {
   font-size: 120%;
 }
 
+body {
+  background: linear-gradient(150deg, #8ba3fa, #bdc8f1);
+  min-height: 100vh;
+}
+
 .wrapper {
   width: 80%;
   height: 100%;
@@ -258,6 +263,39 @@ html {
 
 .header {
   height: 80vh;
+}
+.header__curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.header__curve svg {
+  position: relative;
+  display: block;
+  width: calc(129% + 1.3px);
+  height: 60px;
+}
+.header__curve-transparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  opacity: 0.3;
+}
+.header__curve-transparent svg {
+  position: relative;
+  display: block;
+  width: calc(161% + 1.3px);
+  height: 130px;
 }
 .header__container {
   display: -webkit-box;
@@ -274,6 +312,10 @@ html {
       -ms-flex-align: center;
           align-items: center;
 }
+.header__animation {
+  -webkit-animation: disappear 0.5s ease-in-out forwards;
+          animation: disappear 0.5s ease-in-out forwards;
+}
 
 .form__fieldset {
   border: none;
@@ -287,4 +329,64 @@ html {
 }
 .form__legend {
   margin: 0 auto 1rem auto;
+}
+
+.main__container {
+  background-color: grey;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 30vw;
+  border-radius: 2rem;
+  -webkit-animation: appear 1.5s ease-in-out forwards;
+          animation: appear 1.5s ease-in-out forwards;
+}
+.main__heading {
+  text-align: center;
+  margin: 2%;
+}
+
+.displayNone {
+  display: none;
+}
+
+.shape-fill {
+  fill: #fff;
+}
+
+@-webkit-keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
