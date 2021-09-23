@@ -16,6 +16,16 @@
 
 // app.apiUrl = "http://api.airvisual.com/v2/";
 
+
+// TEST SEARCH PARAMS
+// app.apiCountry = "Canada";
+// app.apiState = "Ontario";
+// app.apiCity = "Toronto";
+// app.apiLat = 43.69309370534632;
+// app.apiLon = -79.43223323783614;
+
+
+
 const app = {};
 
 app.apiEndpointListCountries = "http://api.airvisual.com/v2/countries";
@@ -25,11 +35,7 @@ app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
 app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
 
 app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
-// app.apiCountry = "Canada";
-// app.apiState = "Ontario";
-// app.apiCity = "Toronto";
-// app.apiLat = 43.69309370534632;
-// app.apiLon = -79.43223323783614;
+
 app.apiCountry = null;
 app.apiState = null;
 app.apiCity = null;
@@ -58,13 +64,24 @@ app.getApiData = async function(endpoint, selector, step){
 
         let selectList = apiObject.data;
 
+        const nextSelection = document.querySelector(selector);
+        const defaultOption = document.createElement('option')
+        defaultOption.selected = true;
+        defaultOption.disabled = true;
+        defaultOption.defaultSelected = true;
+        defaultOption.hidden = true;
+        defaultOption.text = "please select from dropdown";
+
         if (step == "getInfo") {
             app.printInfo(selectList);
         }
+//<option selected disabled>Choose here</option>
+
         else {   
             selectList.forEach(function(listItem){
-                const selection = document.querySelector(selector) 
+                nextSelection.disabled = false;
                 const options = document.createElement('option');
+
                 selection.disabled = false;
     
                 if (step == "getCountries"){
@@ -85,10 +102,20 @@ app.getApiData = async function(endpoint, selector, step){
                 else{
                     console.log("ERRORS ALL AROUND");
                 }
-                selection.append(options);
+                nextSelection.append(options);
             });
+            console.log("here we are");
+            nextSelection.append(defaultOption)
         }
     });
+}
+
+app.clearSelection = function(elementToSelect){
+    const dropdown = document.querySelector(elementToSelect)
+    dropdown.disabled = true;
+    while (dropdown.hasChildNodes()) {  
+        dropdown.removeChild(dropdown.firstChild);
+    }
 }
 
 app.getSelection = function(){
@@ -96,17 +123,22 @@ app.getSelection = function(){
     document.querySelector('#countrySelection').addEventListener('change', function(){
         app.apiCountry = this.value;
         app.getApiData(app.apiEndpointListStates, '#stateSelection', "getStates")
+        app.clearSelection('#stateSelection');
+        app.clearSelection('#citySelection');
     });
 
     document.querySelector('#stateSelection').addEventListener('change', function(){
         app.apiState = this.value;
-        app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities")
+        app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities");
+        app.clearSelection('#citySelection');
     });
 
     document.querySelector('#citySelection').addEventListener('change', function(){
         app.apiCity = this.value;
-        app.getApiData(app.apiEndpointCityInfo, null, "getInfo")
-        
+
+        app.getApiData(app.apiEndpointCityInfo, null, "getInfo");
+        app.getApiData(app.apiEndpointCityInfo, null, "getInfo")   
+
     });
 
 }
@@ -137,138 +169,10 @@ app.printInfo = function(city) {
 
 app.init = function(){
     app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries");
+    app.clearSelection('#stateSelection');
+    app.clearSelection('#citySelection');
     app.getSelection();
 }
 
 
 app.init();
-
-
-
-
-
-// app.accessApi(url)
-//     .then(function(apiObject){
-//         let selectList = apiObject.data;
-//         selectList.forEach(function(listItem){
-//             const countrySelection = document.querySelector('#countrySelection') 
-//             const options = document.createElement('option');
-
-//             // options.innerText = listItem;
-//             console.log(options);
-//         });
-//     })
-
-
-
-
-
-
-// Object { city: "Burlington", state: "Ontario", country: "Canada", location: {…}, current: {…} }
-// ​
-// city: "Burlington"
-
-// country: "Canada"
-
-// current: Object { weather: {…}, pollution: {…} }
-
-// pollution: Object { ts: "2021-09-22T23:00:00.000Z", aqius: 2, mainus: "p2", … }
-
-// weather: Object { ts: "2021-09-22T23:00:00.000Z", tp: 14, pr: 1006, … }
-
-// <prototype>: Object { … }
-
-// location: Object { type: "Point", coordinates: (2) […] }
-
-// state: "Ontario"
-
-// <prototype>: Object { … }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const galleryApp = {}
-
-// galleryApp.apiUrl = "https://api.unsplash.com/photos";
-// galleryApp.apiKey = "24hJVNhuvMBZwTqryXAtdpqiPpvgcpO9tR4b6ZKelUo";
-// // galleryApp.apiSecretKey = "v_s67e8KHCRfNAg28SknUvoxFOxmI6TZVp9YsIn9Fd0";
-
-// galleryApp.getPhotos = function(){
-//     const url = new URL(galleryApp.apiUrl);
-//     url.search = new URLSearchParams({
-//         client_id: galleryApp.apiKey
-//         // client_idSecret: galleryApp.apiSecretKey,
-//     });
-
-//     fetch(url)
-//     .then(function(response){
-
-//         return response.json();
-//     }).then(function(jsonResponse){
-//         console.log(jsonResponse);
-//     });
-// }
-
-
-
-
-// galleryApp.init = function(){
-//     galleryApp.getPhotos();
-// }
-
-// galleryApp.init();
-
-
-
-
-
-
-
-
-
-
-// fetch('https://www.septastats.com/api/current/system/latest')
-//     .then(function(response){
-//         return response.json();
-//     }).then(function(jsonData){
-
-//         // const route = jsonData.data[0].id;
-//         // const startStation = jsonData.data[0].source;
-//         // const endStation = jsonData.data[0].dest;
-//         // const minsLate = jsonData.data[0].late;
-
-//         // const paragraphEl = document.querySelector('p.nextDeparture');
-
-//         // paragraphEl.innerHTML = `The ${route} train from ${startStation} to ${endStation} is running ${minsLate} minutes late.`
-
-
-//         console.log(jsonData.data);
-        
-//         let paragraphEl = document.querySelector('p.nextDeparture');
-
-//         for (i=0; i<jsonData.data.length; i++){
-
-//             let trainDest2 = jsonData.data[i].dest;
-//             let trainLate2 = jsonData.data[i].late;
-
-//             console.log(`The train heading to ${trainDest2} and is ${trainLate2} minutes late`);
-//         }
-//     });
-
