@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 /*----------SETUP----------*/
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display+SC:ital,wght@1,900&family=Josefin+Sans:wght@700&display=swap");
 html {
@@ -246,11 +248,22 @@ html {
 html {
   padding: 0 auto;
   margin: 0 auto;
-  font-size: 120%;
+  font-size: 125%;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.15;
+  color: #2c2c2c;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: linear-gradient(150deg, #8ba3fa, #bdc8f1);
+  background: linear-gradient(150deg, #b4c4ff, #f0efed);
   min-height: 100vh;
 }
 
@@ -301,16 +314,33 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-top: 3%;
+}
+.header__container__text {
+  width: 30vw;
+  margin: 0 9%;
+  text-align: center;
+}
+.header__container__text h1 {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+.header__container__text select {
+  font-family: inherit;
+}
+.header__container__img {
+  width: 38vw;
 }
 .header__animation {
   -webkit-animation: disappear 0.5s ease-in-out forwards;
@@ -347,6 +377,24 @@ body {
 .main__heading {
   text-align: center;
   margin: 2%;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 5vw;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 2;
+}
+footer a {
+  color: black;
+  text-decoration: none;
 }
 
 .displayNone {
