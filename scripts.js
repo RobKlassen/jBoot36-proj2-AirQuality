@@ -34,7 +34,7 @@ app.apiEndpointListCities = "http://api.airvisual.com/v2/cities";
 app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
 app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
 
-app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
+app.apiKey = "f54d55f6-4ef0-4a18-baa0-cf8f3273a20a";
 
 app.apiCountry = null;
 app.apiState = null;
@@ -42,105 +42,39 @@ app.apiCity = null;
 app.apiLat = null;
 app.apiLon = null;
 
-app.accessApi = async function(url){
-    const res = await fetch(url);
-    const jsonData = await res.json();
-    return jsonData;
-}
+const countrySelector = document.querySelector('#countrySelection');
+const stateSelector = document.querySelector('#stateSelection');
+const citySelector = document.querySelector('#citySelection');
 
-app.getApiData = async function(endpoint, selector, step){
-    const url = new URL(endpoint);
-    url.search = new URLSearchParams({
-        key: app.apiKey,
-        country: app.apiCountry,
-        state: app.apiState,
-        city: app.apiCity,
-        lat: app.apiLat,
-        lon: app.apiLon
-    });
+app.createDropdown = function(selectList, defaultOption, nextSelection, step){
+    selectList.forEach(function(listItem){
+        nextSelection.disabled = false;
+        const options = document.createElement('option');
 
-    app.accessApi(url)
-    .then(function(apiObject){
-
-        let selectList = apiObject.data;
-
-        const nextSelection = document.querySelector(selector);
-        const defaultOption = document.createElement('option')
-        defaultOption.selected = true;
-        defaultOption.disabled = true;
-        defaultOption.defaultSelected = true;
-        defaultOption.hidden = true;
-        defaultOption.text = "please select from dropdown";
-
-        if (step == "getInfo") {
-            app.printInfo(selectList);
+        if (step == "getCountries"){
+            options.innerText = listItem.country;
+            options.value = listItem.country;
         }
-
-        else {   
-            selectList.forEach(function(listItem){
-                nextSelection.disabled = false;
-                const options = document.createElement('option');
-
-    
-                if (step == "getCountries"){
-                    options.innerText = listItem.country;
-                    options.value = listItem.country;
-                }
-                else if (step == "getStates"){
-                    options.innerText = listItem.state;
-                    options.value = listItem.state;
-                }
-                else if (step == "getCities"){
-                    options.innerText = listItem.city;
-                    options.value = listItem.city;
-                }
-                else if (step =="getInfo"){
-                    console.log(listItem);
-                }
-                else{
-                    console.log("ERRORS ALL AROUND");
-                }
-                nextSelection.append(options);
-            });
-            console.log("here we are");
-            nextSelection.append(defaultOption)
+        else if (step == "getStates"){
+            options.innerText = listItem.state;
+            options.value = listItem.state;
         }
+        else if (step == "getCities"){
+            options.innerText = listItem.city;
+            options.value = listItem.city;
+        }
+        else if (step =="getInfo"){
+            console.log(listItem);
+        }
+        else{
+            console.log("ERRORS ALL AROUND");
+        }
+        nextSelection.append(options);
     });
-}
-
-app.clearSelection = function(elementToSelect){
-    const dropdown = document.querySelector(elementToSelect)
-    dropdown.disabled = true;
-    while (dropdown.hasChildNodes()) {  
-        dropdown.removeChild(dropdown.firstChild);
-    }
-}
-
-app.getSelection = function(){
-    
-    document.querySelector('#countrySelection').addEventListener('change', function(){
-        app.apiCountry = this.value;
-        app.getApiData(app.apiEndpointListStates, '#stateSelection', "getStates")
-        app.clearSelection('#stateSelection');
-        app.clearSelection('#citySelection');
-    });
-
-    document.querySelector('#stateSelection').addEventListener('change', function(){
-        app.apiState = this.value;
-        app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities");
-        app.clearSelection('#citySelection');
-    });
-
-    document.querySelector('#citySelection').addEventListener('change', function(){
-        app.apiCity = this.value;
-        app.getApiData(app.apiEndpointCityInfo, null, "getInfo")
-    });
-
+    nextSelection.append(defaultOption)
 }
 
 app.printInfo = function(city) {
-
-
     console.log(city.city);
     console.log(city.country);
     console.log("aqius is", city.current.pollution.aqius);
@@ -162,12 +96,107 @@ app.printInfo = function(city) {
     `
 }
 
-app.init = function(){
-    app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries");
+app.accessApi = async function(url){
+    const res = await fetch(url);
+    const jsonData = await res.json();
+    return jsonData;
+}
+
+app.checkIfValidAPI = function(validateMe){
+    console.log(validateMe);
+    if (validateMe.status == "success"){
+        // console.log(validateMe.data);
+        return validateMe.data;
+    }
+    else if(validateMe.status == "fail"){
+        return false;
+    }
+    else{console.log("HARD ERRORS");}
+}
+
+app.getApiData = async function(endpoint, nextSelectorID, step, currentDropdown){
+    const url = new URL(endpoint);
+    url.search = new URLSearchParams({
+        key: app.apiKey,
+        country: app.apiCountry,
+        state: app.apiState,
+        city: app.apiCity,
+        lat: app.apiLat,
+        lon: app.apiLon
+    });
+
+    app.accessApi(url)
+    .then(function(apiObject){
+        const nextSelection = document.querySelector(nextSelectorID);
+        const defaultOption = document.createElement('option')
+        defaultOption.selected = true;
+        defaultOption.disabled = true;
+        defaultOption.defaultSelected = true;
+        defaultOption.hidden = true;
+        defaultOption.text = "please select from dropdown";
+
+
+        console.log(apiObject);
+        selectList = app.checkIfValidAPI(apiObject);
+        // let selectList = apiObject.data;
+
+        console.log(selectList);
+
+        if (step == "getInfo") {
+            app.printInfo(selectList);
+        }
+        else if(selectList == false){
+//========
+//========
+//========
+            console.log("YOU FINALLY CAUGHT THIS ERROR");
+            console.log(currentDropdown);
+            console.log("YOU FINALLY CAUGHT THIS ERROR");
+            console.log("you finally caught this error");
+//========
+//========
+//========
+        }
+        else { 
+            app.createDropdown(selectList, defaultOption, nextSelection, step);   
+        }
+    })
+}
+
+app.clearSelection = function(elementToSelect){
+    const dropdown = document.querySelector(elementToSelect)
+    dropdown.disabled = true;
+    while (dropdown.hasChildNodes()) {  
+        dropdown.removeChild(dropdown.firstChild);
+    }
+}
+
+app.getSelection = function(){
+
+    countrySelector.addEventListener('change', function(){
+        app.apiCountry = this.value;
+        app.getApiData(app.apiEndpointListStates, '#stateSelection', "getStates", countrySelector)
+        app.clearSelection('#stateSelection');
+        app.clearSelection('#citySelection');
+    });
+
+    stateSelector.addEventListener('change', function(){
+        app.apiState = this.value;
+        app.getApiData(app.apiEndpointListCities, '#citySelection', "getCities", stateSelector);
+        app.clearSelection('#citySelection');
+    });
+
+    citySelector.addEventListener('change', function(){
+        app.apiCity = this.value;
+        app.getApiData(app.apiEndpointCityInfo, null, "getInfo", citySelector)
+    });
+}
+
+app.init = function(){   
+    app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries", null);
     app.clearSelection('#stateSelection');
     app.clearSelection('#citySelection');
     app.getSelection();
 }
-
 
 app.init();
