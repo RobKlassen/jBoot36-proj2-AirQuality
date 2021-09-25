@@ -109,6 +109,7 @@ app.printInfo = function(city) {
     <li>WEATHER</li>
     <li>Weather information from: ${city.current.weather.ts}</li>
     <img src="${'https://airvisual.com/images/'+city.current.weather.ic+".png"}" alt="weather icon">
+    <i class="fas fa-long-arrow-alt-up"></i>
     <li>Current temperature is: ${city.current.weather.tp}°C</li>
     <li>Current humidity is: ${city.current.weather.hu}%</li>
     <li>Current Barometric Atmospheric Pressure is: ${city.current.weather.pr}hPa</li>
