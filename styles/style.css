@@ -530,3 +530,37 @@ footer a {
             transform: translateY(0);
   }
 }
+.weatherBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  width: 200px;
+}
+.weatherBox img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 50%;
+  width: 50%;
+}
+.weatherBox p {
+  width: 50%;
+  font-size: 18px;
+  padding-right: 5px;
+}
+.weatherBox p span {
+  font-size: 12px;
+}
+.weatherBox p .windDirection1 {
+  font-size: 35px;
+}
