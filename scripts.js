@@ -43,12 +43,6 @@
 //ex
 // https://airvisual.com/images/01d.png
 
-// "p2": "ugm3", //pm2.5
-// "p1": "ugm3", //pm10
-// "o3": "ppb", //Ozone O3
-// "n2": "ppb", //Nitrogen dioxide NO2 
-// "s2": "ppb", //Sulfur dioxide SO2 
-// "co": "ppm" //Carbon monoxide CO 
 
 const app = {};
 
@@ -111,22 +105,33 @@ app.printInfo = function(city) {
     mainUlElement.innerHTML = `
     <li>${city.city}</li>
     <li>${city.country}</li>
-    <li>${city.current.pollution.aqius}</li>
-    <li>${city.current.weather.hu}</li>
+    <li>Current AQIUS Pollution Index is: ${city.current.pollution.aqius}</li>
+    <li>WEATHER</li>
+    <li>Weather information from: ${city.current.weather.ts}</li>
+    <img src="${'https://airvisual.com/images/'+city.current.weather.ic+".png"}" alt="weather icon">
+    <li>Current temperature is: ${city.current.weather.tp}°C</li>
+    <li>Current humidity is: ${city.current.weather.hu}%</li>
+    <li>Current Barometric Atmospheric Pressure is: ${city.current.weather.pr}hPa</li>
+    <li>Current Wind Direction is coming from: ${city.current.weather.wd}°Clockwise from N</li>
+    <li>Current Windspeed is: ${city.current.weather.ws}m/s</li>
     `
+    // console.log(mainUlElement);
 
-    console.log(city.location.coordinates);
-    console.log(city.location.coordinates[0]);
-    console.log(city.location.coordinates[1]);
-    console.log(city.current.pollution.aqius);
-    console.log(city.current.weather.hu); // humidity percent%
-    console.log(city.current.weather.ic); // weather icon code
-    console.log(city.current.weather.pr); // atmospheric pressure hPa
-    console.log(city.current.weather.wd); // wind direction 360*angle N=0
-    console.log(city.current.weather.ws); // windspeed m/s
-    console.log(city.current.weather.ts); // timestamp
-    console.log(city.current.weather.tp); // temperature in celcius
-    console.log(city.current.pollution.mainus); //main pollutant
+    // console.log(city.location.coordinates);
+    // console.log(city.location.coordinates[0]);
+    // console.log(city.location.coordinates[1]);
+
+    // console.log(city.current.weather.hu); // humidity percent%
+    // console.log(city.current.weather.pr); // atmospheric pressure hPa
+    // console.log(city.current.weather.wd); // wind direction 360*angle N=0
+    // console.log(city.current.weather.ws); // windspeed m/s
+    // console.log(city.current.weather.ts); // timestamp
+    // console.log(city.current.weather.tp); // temperature in celcius
+
+    // console.log(city.current.pollution.aqius);
+
+    // console.log(city.current.weather.ic); // weather icon code
+    // // //ICON IMAGE URL: https://airvisual.com/images/[[[url]]]
 }
 
 app.checkIfValidAPI = function(validateMe){
@@ -218,6 +223,7 @@ app.getSelection = function(){
 }
 
 app.init = function(){   
+    //ENABLE THIS LINE TO GET DEFAULT DATA (DO NOT ENABLE YET, CAUSES VISUAL ISSUES)
     // app.getApiData(app.apiEndpointNearestCity, null, "getNearest", null);
     app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries", null);
     app.clearSelection('#stateSelection');
