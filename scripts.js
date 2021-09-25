@@ -115,10 +115,8 @@ app.printInfo = function(city) {
 
     mainUlElement.innerHTML = 
     `
+    <h2>${cityName}, ${countryName}</h2>
     <li>Current AQIUS Pollution Index is: ${cityPollutionAQIUS}</li>
-    
-    <h2>${cityName}, ${{countryName}</h2>
-    <li>Current AQIUS Pollution Index is: ${city.current.pollution.aqius}</li>
     <div class="aqi">
     <li class="aqi__bar"></li>
     </div>
@@ -130,9 +128,8 @@ app.printInfo = function(city) {
     <li>Current humidity is: ${cityHumidity}%</li>
     <li>Current Barometric Atmospheric Pressure is: ${cityPressure}hPa</li>
     <li>Wind Speed and Direction: ${cityWindSpeed}m/s <i class="fas fa-long-arrow-alt-down windDirection1"></i></li>
-    `;
     const windDirectionElement = document.querySelector('.windDirection1');
-    windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
+    windDirectionElement.style.transform = rotate(${cityWindDirection}deg);
     `
 }
 

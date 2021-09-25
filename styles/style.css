@@ -414,7 +414,18 @@ body {
   text-align: center;
   margin: 2%;
 }
+.main__apiInfo {
+  padding: 5%;
+}
+.main__apiInfo ul > * {
+  margin-bottom: 2%;
+}
+.main__apiInfo img {
+  width: 3rem;
+}
 .main__apiInfo li {
+  margin-bottom: 2%;
+  list-style: none;
   -webkit-animation: appear 1.5s ease-in-out forwards;
           animation: appear 1.5s ease-in-out forwards;
 }

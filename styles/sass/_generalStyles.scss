@@ -136,9 +136,26 @@ body {
         margin: 2%;
     }
 
-    &__apiInfo li {
-      animation: appear 1.5s ease-in-out forwards;
+    &__apiInfo {
+      padding: 5%;
+
+      & ul > * {
+        margin-bottom: 2%;
+      }
+
+      & img {
+        width: 3rem;
+      }
+
+
+      & li {
+        margin-bottom: 2%;
+        list-style: none;
+        animation: appear 1.5s ease-in-out forwards;
+      }
     }
+    
+    
 }
 
 footer {
