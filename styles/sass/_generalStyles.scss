@@ -1,4 +1,6 @@
 body {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(150deg, $lightBlue, $offWhite);
   min-height: 100vh;
 }
@@ -120,12 +122,13 @@ body {
 }
 
 .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7vw;
+
     &__container {
-        background-color: grey;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        background-color: $white;
         width: 50vw;
         height: 30vw;
         border-radius: 2rem;

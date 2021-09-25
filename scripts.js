@@ -91,13 +91,13 @@ app.createDropdown = function(selectList, defaultOption, nextSelection, step){
 
 app.printInfo = function(city) {
 
-    console.log("succesfully printed info");
+    console.log(city);
     
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
     const mainSelection = document.querySelector('.main__selection');
 
-    header.classList.add('header__animation');
+    // header.classList.add('header__animation');
     mainSelection.classList.add('main__container');
     main.classList.remove('displayNone');
 
