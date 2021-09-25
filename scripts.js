@@ -114,15 +114,35 @@ app.printInfo = function(city) {
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
 
+    const progress = function(){
+        
+
+        for (let i = 0; i < cityPollutionAQIUS+1; i++) {
+            
+            task(i)
+        }
+
+        function task(i) {
+            setTimeout(() => {
+                let aqiLevel = 0;
+                return (aqiLevel + i)
+            }, 100 * i);
+        
+        }
+    }
+
     mainUlElement.innerHTML = 
 
     `
-    <li>Current AQIUS Pollution Index is: ${cityPollutionAQIUS}</li>
-    
     <h2>${cityName}, ${countryName}</h2>
-    <li>Current AQIUS Pollution Index is: ${city.current.pollution.aqius}</li>
+    
+    <li>Current AQIUS Pollution Index is: ${cityPollutionAQIUS}</li>
     <div class="aqi">
-    <li class="aqi__bar"></li>
+        <li class="aqi__bar">
+            <span>Very Good</span>
+            <span style="left: ${progress()}%"></span>
+            <span>Very Bad</span>
+        </li>
     </div>
     
     <li>WEATHER</li>
@@ -131,7 +151,6 @@ app.printInfo = function(city) {
     <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
     <p><i class="fas fa-long-arrow-alt-down windDirection1"></i> ${cityWindKMH}<span> km/h</span></p>
     </div>
-
 
     <li>Weather information from: ${cityTimestamp}</li>
     <li>Current temperature is: ${cityTemperature}°C</li>
@@ -142,6 +161,7 @@ app.printInfo = function(city) {
 
     const windDirectionElement = document.querySelector('.windDirection1');
     windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
+
 }
 
 app.checkIfValidAPI = function(validateMe){
