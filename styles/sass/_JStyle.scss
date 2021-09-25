@@ -1,3 +1,30 @@
 // .windRotate{
 //     transform: rotate(20deg);
 // }
+
+.weatherBox{
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    height:100%;
+    width:200px;
+    margin-bottom: 2%;
+
+    img{
+        object-fit: contain;
+        height:50%;
+        width:50%;
+    }
+    p{
+        width:50%;
+        font-size:18px;
+        padding-right:5px;
+        span{
+            font-size:12px;
+        }
+        .windDirection1{
+            font-size: 35px;
+        }   
+    }
+}
