@@ -251,6 +251,7 @@ html {
   font-family: "Montserrat", sans-serif;
   line-height: 1.15;
   color: #2c2c2c;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -412,6 +413,10 @@ body {
 .main__heading {
   text-align: center;
   margin: 2%;
+}
+.main__apiInfo li {
+  -webkit-animation: appear 1.5s ease-in-out forwards;
+          animation: appear 1.5s ease-in-out forwards;
 }
 
 footer {

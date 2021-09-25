@@ -135,6 +135,10 @@ body {
         text-align: center;
         margin: 2%;
     }
+
+    &__apiInfo li {
+      animation: appear 1.5s ease-in-out forwards;
+    }
 }
 
 footer {
