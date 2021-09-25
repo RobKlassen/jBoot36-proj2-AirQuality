@@ -94,6 +94,7 @@ app.printInfo = function(city) {
     let countryName = city.country;
     let cityWindDirection = city.current.weather.wd;
     let cityWindSpeed = city.current.weather.ws;
+    let cityWindKMH = (cityWindSpeed * 3.6).toFixed(1); 
     let cityPollutionAQIUS = city.current.pollution.aqius;
     let cityTemperature = city.current.weather.tp;
     let cityHumidity = city.current.weather.hu;
@@ -116,21 +117,31 @@ app.printInfo = function(city) {
     mainUlElement.innerHTML = 
     `
     <h2>${cityName}, ${countryName}</h2>
+    
     <li>Current AQIUS Pollution Index is: ${cityPollutionAQIUS}</li>
     <div class="aqi">
-    <li class="aqi__bar"></li>
+        <li class="aqi__bar">
+            <span>Very Good</span>
+            <span>Very Bad</span>
+        </li>
     </div>
     
     <li>WEATHER</li>
+
+    <div class="weatherBox">
     <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
+    <p><i class="fas fa-long-arrow-alt-down windDirection1"></i> ${cityWindKMH}<span> km/h</span></p>
+    </div>
+
+    
     <li>Weather information from: ${cityTimestamp}</li>
     <li>Current temperature is: ${cityTemperature}°C</li>
     <li>Current humidity is: ${cityHumidity}%</li>
     <li>Current Barometric Atmospheric Pressure is: ${cityPressure}hPa</li>
-    <li>Wind Speed and Direction: ${cityWindSpeed}m/s <i class="fas fa-long-arrow-alt-down windDirection1"></i></li>
-    const windDirectionElement = document.querySelector('.windDirection1');
-    windDirectionElement.style.transform = rotate(${cityWindDirection}deg);
     `
+    const windDirectionElement = document.querySelector('.windDirection1');
+    windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
+
 }
 
 app.checkIfValidAPI = function(validateMe){

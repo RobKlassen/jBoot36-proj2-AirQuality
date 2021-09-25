@@ -417,9 +417,6 @@ body {
 .main__apiInfo {
   padding: 5%;
 }
-.main__apiInfo ul > * {
-  margin-bottom: 2%;
-}
 .main__apiInfo img {
   width: 3rem;
 }
@@ -458,12 +455,28 @@ footer a {
 
 .aqi {
   width: 100%;
+  margin-bottom: 7%;
   background-color: #f0efed;
 }
 .aqi__bar {
-  width: 1%;
+  position: relative;
+  width: 100%;
   height: 1rem;
-  background-color: green;
+  margin-bottom: 5%;
+  background: -webkit-gradient(linear, left top, right top, from(#3f87a6), color-stop(#fafaa8), to(#f69d3c));
+  background: linear-gradient(0.25turn, #3f87a6, #fafaa8, #f69d3c);
+  border-radius: 5px;
+}
+.aqi__bar span {
+  position: absolute;
+  top: 100%;
+  font-size: 0.7rem;
+}
+.aqi__bar span:nth-of-type(1) {
+  left: 0;
+}
+.aqi__bar span:nth-of-type(2) {
+  right: 0;
 }
 
 .slideUp {
@@ -540,4 +553,39 @@ footer a {
     -webkit-transform: translateY(0);
             transform: translateY(0);
   }
+}
+.weatherBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  width: 200px;
+  margin-bottom: 2%;
+}
+.weatherBox img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 50%;
+  width: 50%;
+}
+.weatherBox p {
+  width: 50%;
+  font-size: 18px;
+  padding-right: 5px;
+}
+.weatherBox p span {
+  font-size: 12px;
+}
+.weatherBox p .windDirection1 {
+  font-size: 35px;
 }
