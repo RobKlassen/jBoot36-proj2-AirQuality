@@ -332,6 +332,7 @@ body {
   text-align: center;
 }
 .header__container__text h1 {
+  margin: 10% 0 3% 0;
   font-family: "Ubuntu", sans-serif;
   font-weight: 500;
   letter-spacing: 3px;
@@ -359,6 +360,31 @@ body {
 }
 .form__legend {
   margin: 0 auto 1rem auto;
+  font-size: 1.1rem;
+}
+.form-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 2%;
+  text-align: left;
+}
+.form-control label {
+  margin-bottom: 2%;
+  font-size: 0.9rem;
+}
+.form-control select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  margin-bottom: 5%;
+  padding: 3%;
+  border: none;
+  border-radius: 10px;
 }
 
 .main__container {
