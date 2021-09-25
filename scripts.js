@@ -114,23 +114,6 @@ app.printInfo = function(city) {
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
 
-    const progress = function(){
-        
-
-        for (let i = 0; i < cityPollutionAQIUS+1; i++) {
-            
-            task(i)
-        }
-
-        function task(i) {
-            setTimeout(() => {
-                let aqiLevel = 0;
-                return (aqiLevel + i)
-            }, 100 * i);
-        
-        }
-    }
-
     mainUlElement.innerHTML = 
 
     `
@@ -140,7 +123,7 @@ app.printInfo = function(city) {
     <div class="aqi">
         <li class="aqi__bar">
             <span>Very Good</span>
-            <span style="left: ${progress()}%"></span>
+            <span class="pollutionBar" style="left: 0%"></span>
             <span>Very Bad</span>
         </li>
     </div>
@@ -161,7 +144,23 @@ app.printInfo = function(city) {
 
     const windDirectionElement = document.querySelector('.windDirection1');
     windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
+    
 
+    const movePollutionBar = function(){
+        for (let i = 0; i < cityPollutionAQIUS+1; i++) {
+            moveBar(i)
+        }
+        function moveBar(i) {
+            setTimeout(() => {
+                let progressBar = document.querySelector('.pollutionBar');
+                progressBar.style.left = (i/2)+"%";
+                progressBar.style.transition = "ease all 0.15s";
+                let aqiLevel = 0;
+                return (aqiLevel + i)
+            }, 25 * i);
+        }
+    }
+    movePollutionBar();
 }
 
 app.checkIfValidAPI = function(validateMe){
@@ -209,7 +208,6 @@ app.getApiData = async function(endpoint, nextSelectorID, step, currentDropdown)
             app.printInfo(selectList);
         }
         else if (step == "getNearest") {
-            console.log("attempting to get nearest");
             app.printInfo(selectList);
         }
         else if(selectList == false){
