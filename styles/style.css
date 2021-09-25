@@ -302,13 +302,13 @@ body {
   line-height: 0;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
-  opacity: 0.3;
+  opacity: 0.2;
 }
 .header__curve-transparent svg {
   position: relative;
   display: block;
   width: calc(161% + 1.3px);
-  height: 130px;
+  height: 180px;
 }
 .header__container {
   display: -webkit-box;

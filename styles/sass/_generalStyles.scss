@@ -37,13 +37,13 @@ body {
         overflow: hidden;
         line-height: 0;
         transform: rotate(180deg);
-        opacity: 0.3;
+        opacity: 0.2;
 
         & svg {
           position: relative;
           display: block;
           width: calc(161% + 1.3px);
-          height: 130px;
+          height: 180px;
         }
       }
     }
