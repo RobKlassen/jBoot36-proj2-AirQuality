@@ -114,6 +114,23 @@ app.printInfo = function(city) {
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
 
+    const progress = function(){
+        
+
+        for (let i = 0; i < cityPollutionAQIUS+1; i++) {
+            
+            task(i)
+        }
+
+        function task(i) {
+            setTimeout(() => {
+                let aqiLevel = 0;
+                return (aqiLevel + i)
+            }, 100 * i);
+        
+        }
+    }
+
     mainUlElement.innerHTML = 
     `
     <h2>${cityName}, ${countryName}</h2>
@@ -122,6 +139,7 @@ app.printInfo = function(city) {
     <div class="aqi">
         <li class="aqi__bar">
             <span>Very Good</span>
+            <span style="left: ${progress()}%"></span>
             <span>Very Bad</span>
         </li>
     </div>
