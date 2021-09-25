@@ -52,7 +52,7 @@ app.apiEndpointListCities = "http://api.airvisual.com/v2/cities";
 app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
 app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
 
-app.apiKey = "f54d55f6-4ef0-4a18-baa0-cf8f3273a20a";
+app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
 
 app.apiCountry = null;
 app.apiState = null;
@@ -90,9 +90,19 @@ app.createDropdown = function(selectList, defaultOption, nextSelection, step){
 }
 
 app.printInfo = function(city) {
+    let cityName = city.city;
+    let countryName = city.country;
+    let cityWindDirection = city.current.weather.wd;
+    let cityWindSpeed = city.current.weather.ws;
+    let cityPollutionAQIUS = city.current.pollution.aqius;
+    let cityTemperature = city.current.weather.tp;
+    let cityHumidity = city.current.weather.hu;
+    let cityPressure = city.current.weather.pr;
+    let cityTimestamp = city.current.weather.ts;
+    let cityLongitude = city.location.coordinates[0];
+    let cityLatitude = city.location.coordinates[1];
+    let cityWeatherIcon = city.current.weather.ic;
 
-    console.log(city);
-    
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
     const mainSelection = document.querySelector('.main__selection');
@@ -102,43 +112,26 @@ app.printInfo = function(city) {
     main.scrollIntoView();
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
-    mainUlElement.innerHTML = `
-    <li>${city.city}</li>
-    <li>${city.country}</li>
-    <li>Current AQIUS Pollution Index is: ${city.current.pollution.aqius}</li>
-    <li>WEATHER</li>
-    <li>Weather information from: ${city.current.weather.ts}</li>
-    <img src="${'https://airvisual.com/images/'+city.current.weather.ic+".png"}" alt="weather icon">
-    <i class="fas fa-long-arrow-alt-up"></i>
-    <li>Current temperature is: ${city.current.weather.tp}°C</li>
-    <li>Current humidity is: ${city.current.weather.hu}%</li>
-    <li>Current Barometric Atmospheric Pressure is: ${city.current.weather.pr}hPa</li>
-    <li>Current Wind Direction is coming from: ${city.current.weather.wd}°Clockwise from N</li>
-    <li>Current Windspeed is: ${city.current.weather.ws}m/s</li>
+    mainUlElement.innerHTML = 
     `
-    // console.log(mainUlElement);
-
-    // console.log(city.location.coordinates);
-    // console.log(city.location.coordinates[0]);
-    // console.log(city.location.coordinates[1]);
-
-    // console.log(city.current.weather.hu); // humidity percent%
-    // console.log(city.current.weather.pr); // atmospheric pressure hPa
-    // console.log(city.current.weather.wd); // wind direction 360*angle N=0
-    // console.log(city.current.weather.ws); // windspeed m/s
-    // console.log(city.current.weather.ts); // timestamp
-    // console.log(city.current.weather.tp); // temperature in celcius
-
-    // console.log(city.current.pollution.aqius);
-
-    // console.log(city.current.weather.ic); // weather icon code
-    // // //ICON IMAGE URL: https://airvisual.com/images/[[[url]]]
+    <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
+    <li>${cityName}</li>
+    <li>${countryName}</li>
+    <li>Current AQIUS Pollution Index is: ${cityPollutionAQIUS}</li>
+    <li>WEATHER</li>
+    <li>Weather information from: ${cityTimestamp}</li>
+    <li>Current temperature is: ${cityTemperature}°C</li>
+    <li>Current humidity is: ${cityHumidity}%</li>
+    <li>Current Barometric Atmospheric Pressure is: ${cityPressure}hPa</li>
+    <li>Wind Speed and Direction: ${cityWindSpeed}m/s <i class="fas fa-long-arrow-alt-down windDirection1"></i></li>
+    `;
+    const windDirectionElement = document.querySelector('.windDirection1');
+    windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
 }
 
 app.checkIfValidAPI = function(validateMe){
     console.log(validateMe);
     if (validateMe.status == "success"){
-        // console.log(validateMe.data);
         return validateMe.data;
     }
     else if(validateMe.status == "fail"){
@@ -225,7 +218,7 @@ app.getSelection = function(){
 
 app.init = function(){   
     //ENABLE THIS LINE TO GET DEFAULT DATA (DO NOT ENABLE YET, CAUSES VISUAL ISSUES)
-    // app.getApiData(app.apiEndpointNearestCity, null, "getNearest", null);
+    app.getApiData(app.apiEndpointNearestCity, null, "getNearest", null);
     app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries", null);
     app.clearSelection('#stateSelection');
     app.clearSelection('#citySelection');
@@ -233,3 +226,15 @@ app.init = function(){
 }
 
 app.init();
+
+
+    // console.log(city.location.coordinates);
+    // console.log(city.location.coordinates[0]);
+    // console.log(city.location.coordinates[1]);
+    // console.log(city.current.weather.hu); // humidity percent%
+    // console.log(city.current.weather.pr); // atmospheric pressure hPa
+    // console.log(city.current.weather.wd); // wind direction 360*angle N=0
+    // console.log(city.current.weather.ws); // windspeed m/s
+    // console.log(city.current.weather.ts); // timestamp
+    // console.log(city.current.weather.tp); // temperature in celcius
+    // console.log(city.current.pollution.aqius);
