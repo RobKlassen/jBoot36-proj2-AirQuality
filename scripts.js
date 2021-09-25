@@ -1,49 +1,3 @@
-// http://api.airvisual.com/v2/countries?
-
-// http://api.airvisual.com/v2/states?
-    // needs country
-
-// http://api.airvisual.com/v2/cities?
-    // needs state
-    // needs country
-
-// http://api.airvisual.com/v2/city?
-    // needs state
-    // needs country
-    // needs city
-
-// http://api.airvisual.com/v2/nearest_city?
-
-// app.apiUrl = "http://api.airvisual.com/v2/";
-
-
-// TEST SEARCH PARAMS
-// app.apiCountry = "Canada";
-// app.apiState = "Ontario";
-// app.apiCity = "Toronto";
-// app.apiLat = 43.69309370534632;
-// app.apiLon = -79.43223323783614;
-
-
-// Description	    Name	    Icon
-// clear sky        (day)	    01d.png	
-// clear sky        (night)	    01n.png	
-// few clouds       (day)	    02d.png	
-// few clouds       (night)	    02n.png	
-// scattered clouds	            03d.png	
-// broken clouds	            04d.png	
-// shower rain	                09d.png	
-// rain             (day time)	10d.png	
-// rain             (night time)10n.png	
-// thunderstorm	                11d.png	
-// snow	                        13d.png	
-// mist	                        50d.png	
-
-// https://airvisual.com/images/[[[url]]]
-//ex
-// https://airvisual.com/images/01d.png
-
-
 const app = {};
 
 app.apiEndpointListCountries = "http://api.airvisual.com/v2/countries";
@@ -258,15 +212,3 @@ app.init = function(){
 }
 
 app.init();
-
-
-    // console.log(city.location.coordinates);
-    // console.log(city.location.coordinates[0]);
-    // console.log(city.location.coordinates[1]);
-    // console.log(city.current.weather.hu); // humidity percent%
-    // console.log(city.current.weather.pr); // atmospheric pressure hPa
-    // console.log(city.current.weather.wd); // wind direction 360*angle N=0
-    // console.log(city.current.weather.ws); // windspeed m/s
-    // console.log(city.current.weather.ts); // timestamp
-    // console.log(city.current.weather.tp); // temperature in celcius
-    // console.log(city.current.pollution.aqius);
