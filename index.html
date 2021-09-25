@@ -28,7 +28,7 @@
             </svg>
         </div>
         <div class="header__container wrapper">
-            <div class="header__container__text">
+            <div class="header__container__text slideUp">
                 <h1>Air Quality Project</h1>
                 <!--Will change the title-->
                 <form action="" class="form">
@@ -36,23 +36,25 @@
 
                         <legend class="form__legend">What is your city's air quality today?</legend>
 
-                        <label for="countrySelection">Select the country</label>
+                        <div class="form-control">
+                            <label for="countrySelection">Select the country</label>
+                            <select name="country" id="countrySelection" disabled>
+                            </select>
 
-                        <select name="country" id="countrySelection" disabled>
-                        </select>
+                            <label for="stateSelection">Select the state</label>
+                            <select name="state" id="stateSelection" disabled>
+                            </select>
 
-                        <label for="stateSelection">Select the state</label>
-                        <select name="state" id="stateSelection" disabled>
-                        </select>
+                            <label for="citySelection">Select the city</label>
+                            <select name="city" id="citySelection" disabled>
 
-                        <label for="citySelection">Select the city</label>
-                        <select name="city" id="citySelection" disabled>
-                        </select>
+                            </select>
+                        </div>
 
                     </fieldset>
                 </form>
             </div>
-            <div class="header__container__img">
+            <div class="header__container__img slideIn">
                 <img src="./styles/img/World-rafiki.svg" alt="a cartoonish picture of a planet earth with clouds">
             </div>
         </div>
