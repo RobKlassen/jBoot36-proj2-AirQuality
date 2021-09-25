@@ -99,6 +99,7 @@ app.printInfo = function(city) {
 
     mainSelection.classList.add('main__container');
     main.classList.remove('displayNone');
+    main.scrollIntoView();
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
     mainUlElement.innerHTML = `
