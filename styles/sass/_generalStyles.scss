@@ -138,6 +138,18 @@ footer {
   fill: #fff;
 }
 
+
+
+// Animations
+
+.slideUp {
+  animation: slideUp .8s ease-in-out forwards;
+}
+
+.slideIn {
+  animation: slideIn .8s ease-in-out forwards;
+}
+
 @keyframes disappear {
     0% {
       opacity: 1;
@@ -157,3 +169,27 @@ footer {
       opacity: 1;
     }
   }
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(15%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
