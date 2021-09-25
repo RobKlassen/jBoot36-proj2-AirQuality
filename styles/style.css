@@ -417,6 +417,9 @@ body {
 .main__apiInfo {
   padding: 5%;
 }
+.main__apiInfo ul h2 {
+  margin-bottom: 3%;
+}
 .main__apiInfo img {
   width: 3rem;
 }
@@ -476,6 +479,13 @@ footer a {
   left: 0;
 }
 .aqi__bar span:nth-of-type(2) {
+  top: 0;
+  width: 1%;
+  height: 1rem;
+  background-color: #2c2c2c;
+  border-radius: 5px;
+}
+.aqi__bar span:nth-of-type(3) {
   right: 0;
 }
 
@@ -570,7 +580,7 @@ footer a {
           justify-content: center;
   height: 100%;
   width: 200px;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
 }
 .weatherBox img {
   -o-object-fit: contain;
