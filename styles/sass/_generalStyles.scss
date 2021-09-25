@@ -1,4 +1,6 @@
 body {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(150deg, $lightBlue, $offWhite);
   min-height: 100vh;
 }
@@ -79,10 +81,6 @@ body {
           width: 38vw;
         }
     }
-
-    &__animation {
-        animation: disappear .5s ease-in-out forwards
-    }
 }
 
 .form {
@@ -120,12 +118,13 @@ body {
 }
 
 .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7vw;
+
     &__container {
-        background-color: grey;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        background-color: $white;
         width: 50vw;
         height: 30vw;
         border-radius: 2rem;
@@ -147,7 +146,7 @@ footer {
   line-height: 2;
 
   & a {
-    color: black;
+    color: $black;
     text-decoration: none;
   }
 }
@@ -171,16 +170,6 @@ footer {
 .slideIn {
   animation: slideIn .8s ease-in-out forwards;
 }
-
-@keyframes disappear {
-    0% {
-      opacity: 1;
-    }
-  
-    100% {
-      opacity: 0;
-    }
-  }
   
   @keyframes appear {
     0% {

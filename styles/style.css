@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 /*----------SETUP----------*/
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display+SC:ital,wght@1,900&family=Josefin+Sans:wght@700&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -263,6 +262,13 @@ p {
 }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background: linear-gradient(150deg, #b4c4ff, #f0efed);
   min-height: 100vh;
 }
@@ -343,10 +349,6 @@ body {
 .header__container__img {
   width: 38vw;
 }
-.header__animation {
-  -webkit-animation: disappear 0.5s ease-in-out forwards;
-          animation: disappear 0.5s ease-in-out forwards;
-}
 
 .form__fieldset {
   border: none;
@@ -387,13 +389,20 @@ body {
   border-radius: 10px;
 }
 
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 7vw;
+}
 .main__container {
-  background-color: grey;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  background-color: #fff;
   width: 50vw;
   height: 30vw;
   border-radius: 2rem;
@@ -419,7 +428,7 @@ footer {
   line-height: 2;
 }
 footer a {
-  color: black;
+  color: #2c2c2c;
   text-decoration: none;
 }
 
@@ -441,23 +450,6 @@ footer a {
           animation: slideIn 0.8s ease-in-out forwards;
 }
 
-@-webkit-keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @-webkit-keyframes appear {
   0% {
     opacity: 0;
@@ -466,6 +458,7 @@ footer a {
     opacity: 1;
   }
 }
+
 @keyframes appear {
   0% {
     opacity: 0;
