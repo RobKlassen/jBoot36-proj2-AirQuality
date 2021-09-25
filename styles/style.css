@@ -349,10 +349,6 @@ body {
 .header__container__img {
   width: 38vw;
 }
-.header__animation {
-  -webkit-animation: disappear 0.5s ease-in-out forwards;
-          animation: disappear 0.5s ease-in-out forwards;
-}
 
 .form__fieldset {
   border: none;
@@ -454,23 +450,6 @@ footer a {
           animation: slideIn 0.8s ease-in-out forwards;
 }
 
-@-webkit-keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @-webkit-keyframes appear {
   0% {
     opacity: 0;
@@ -479,6 +458,7 @@ footer a {
     opacity: 1;
   }
 }
+
 @keyframes appear {
   0% {
     opacity: 0;

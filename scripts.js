@@ -97,7 +97,6 @@ app.printInfo = function(city) {
     const main = document.querySelector('.main');
     const mainSelection = document.querySelector('.main__selection');
 
-    // header.classList.add('header__animation');
     mainSelection.classList.add('main__container');
     main.classList.remove('displayNone');
 

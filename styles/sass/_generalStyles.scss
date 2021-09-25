@@ -81,10 +81,6 @@ body {
           width: 38vw;
         }
     }
-
-    &__animation {
-        animation: disappear .5s ease-in-out forwards
-    }
 }
 
 .form {
@@ -174,16 +170,6 @@ footer {
 .slideIn {
   animation: slideIn .8s ease-in-out forwards;
 }
-
-@keyframes disappear {
-    0% {
-      opacity: 1;
-    }
-  
-    100% {
-      opacity: 0;
-    }
-  }
   
   @keyframes appear {
     0% {
