@@ -112,13 +112,19 @@ app.printInfo = function(city) {
     main.scrollIntoView();
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
+
     mainUlElement.innerHTML = 
     `
-    <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
-    <li>${cityName}</li>
-    <li>${countryName}</li>
     <li>Current AQIUS Pollution Index is: ${cityPollutionAQIUS}</li>
+    
+    <h2>${cityName}, ${{countryName}</h2>
+    <li>Current AQIUS Pollution Index is: ${city.current.pollution.aqius}</li>
+    <div class="aqi">
+    <li class="aqi__bar"></li>
+    </div>
+    
     <li>WEATHER</li>
+    <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
     <li>Weather information from: ${cityTimestamp}</li>
     <li>Current temperature is: ${cityTemperature}°C</li>
     <li>Current humidity is: ${cityHumidity}%</li>
@@ -127,6 +133,7 @@ app.printInfo = function(city) {
     `;
     const windDirectionElement = document.querySelector('.windDirection1');
     windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
+    `
 }
 
 app.checkIfValidAPI = function(validateMe){

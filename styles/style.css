@@ -251,6 +251,7 @@ html {
   font-family: "Montserrat", sans-serif;
   line-height: 1.15;
   color: #2c2c2c;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -403,8 +404,8 @@ body {
 }
 .main__container {
   background-color: #fff;
-  width: 50vw;
-  height: 30vw;
+  width: 70vw;
+  height: 40vw;
   border-radius: 2rem;
   -webkit-animation: appear 1.5s ease-in-out forwards;
           animation: appear 1.5s ease-in-out forwards;
@@ -412,6 +413,10 @@ body {
 .main__heading {
   text-align: center;
   margin: 2%;
+}
+.main__apiInfo li {
+  -webkit-animation: appear 1.5s ease-in-out forwards;
+          animation: appear 1.5s ease-in-out forwards;
 }
 
 footer {
@@ -438,6 +443,16 @@ footer a {
 
 .shape-fill {
   fill: #fff;
+}
+
+.aqi {
+  width: 100%;
+  background-color: #f0efed;
+}
+.aqi__bar {
+  width: 1%;
+  height: 1rem;
+  background-color: green;
 }
 
 .slideUp {
