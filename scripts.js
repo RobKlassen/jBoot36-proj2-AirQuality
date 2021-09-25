@@ -25,6 +25,30 @@
 // app.apiLon = -79.43223323783614;
 
 
+// Description	    Name	    Icon
+// clear sky        (day)	    01d.png	
+// clear sky        (night)	    01n.png	
+// few clouds       (day)	    02d.png	
+// few clouds       (night)	    02n.png	
+// scattered clouds	            03d.png	
+// broken clouds	            04d.png	
+// shower rain	                09d.png	
+// rain             (day time)	10d.png	
+// rain             (night time)10n.png	
+// thunderstorm	                11d.png	
+// snow	                        13d.png	
+// mist	                        50d.png	
+
+// https://airvisual.com/images/[[[url]]]
+//ex
+// https://airvisual.com/images/01d.png
+
+// "p2": "ugm3", //pm2.5
+// "p1": "ugm3", //pm10
+// "o3": "ppb", //Ozone O3
+// "n2": "ppb", //Nitrogen dioxide NO2 
+// "s2": "ppb", //Sulfur dioxide SO2 
+// "co": "ppm" //Carbon monoxide CO 
 
 const app = {};
 
@@ -63,9 +87,6 @@ app.createDropdown = function(selectList, defaultOption, nextSelection, step){
             options.innerText = listItem.city;
             options.value = listItem.city;
         }
-        else if (step =="getInfo"){
-            console.log(listItem);
-        }
         else{
             console.log("ERRORS ALL AROUND");
         }
@@ -75,10 +96,9 @@ app.createDropdown = function(selectList, defaultOption, nextSelection, step){
 }
 
 app.printInfo = function(city) {
-    console.log(city.city);
-    console.log(city.country);
-    console.log("aqius is", city.current.pollution.aqius);
-    console.log("humidity is", city.current.weather.hu);
+
+    console.log("succesfully printed info");
+    
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
     const mainSelection = document.querySelector('.main__selection');
@@ -94,12 +114,19 @@ app.printInfo = function(city) {
     <li>${city.current.pollution.aqius}</li>
     <li>${city.current.weather.hu}</li>
     `
-}
 
-app.accessApi = async function(url){
-    const res = await fetch(url);
-    const jsonData = await res.json();
-    return jsonData;
+    console.log(city.location.coordinates);
+    console.log(city.location.coordinates[0]);
+    console.log(city.location.coordinates[1]);
+    console.log(city.current.pollution.aqius);
+    console.log(city.current.weather.hu); // humidity percent%
+    console.log(city.current.weather.ic); // weather icon code
+    console.log(city.current.weather.pr); // atmospheric pressure hPa
+    console.log(city.current.weather.wd); // wind direction 360*angle N=0
+    console.log(city.current.weather.ws); // windspeed m/s
+    console.log(city.current.weather.ts); // timestamp
+    console.log(city.current.weather.tp); // temperature in celcius
+    console.log(city.current.pollution.mainus); //main pollutant
 }
 
 app.checkIfValidAPI = function(validateMe){
@@ -112,6 +139,12 @@ app.checkIfValidAPI = function(validateMe){
         return false;
     }
     else{console.log("HARD ERRORS");}
+}
+
+app.accessApi = async function(url){
+    const res = await fetch(url);
+    const jsonData = await res.json();
+    return jsonData;
 }
 
 app.getApiData = async function(endpoint, nextSelectorID, step, currentDropdown){
@@ -127,6 +160,7 @@ app.getApiData = async function(endpoint, nextSelectorID, step, currentDropdown)
 
     app.accessApi(url)
     .then(function(apiObject){
+
         const nextSelection = document.querySelector(nextSelectorID);
         const defaultOption = document.createElement('option')
         defaultOption.selected = true;
@@ -135,27 +169,18 @@ app.getApiData = async function(endpoint, nextSelectorID, step, currentDropdown)
         defaultOption.hidden = true;
         defaultOption.text = "please select from dropdown";
 
-
-        console.log(apiObject);
-        selectList = app.checkIfValidAPI(apiObject);
-        // let selectList = apiObject.data;
-
-        console.log(selectList);
+        const selectList = app.checkIfValidAPI(apiObject);
 
         if (step == "getInfo") {
             app.printInfo(selectList);
         }
+        else if (step == "getNearest") {
+            console.log("attempting to get nearest");
+            app.printInfo(selectList);
+        }
         else if(selectList == false){
-//========
-//========
-//========
-            console.log("YOU FINALLY CAUGHT THIS ERROR");
-            console.log(currentDropdown);
-            console.log("YOU FINALLY CAUGHT THIS ERROR");
-            console.log("you finally caught this error");
-//========
-//========
-//========
+            defaultOption.text = "No entries found";
+            currentDropdown.append(defaultOption);
         }
         else { 
             app.createDropdown(selectList, defaultOption, nextSelection, step);   
@@ -193,6 +218,7 @@ app.getSelection = function(){
 }
 
 app.init = function(){   
+    // app.getApiData(app.apiEndpointNearestCity, null, "getNearest", null);
     app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries", null);
     app.clearSelection('#stateSelection');
     app.clearSelection('#citySelection');
