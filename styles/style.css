@@ -404,8 +404,8 @@ body {
 }
 .main__container {
   background-color: #fff;
-  width: 50vw;
-  height: 30vw;
+  width: 70vw;
+  height: 40vw;
   border-radius: 2rem;
   -webkit-animation: appear 1.5s ease-in-out forwards;
           animation: appear 1.5s ease-in-out forwards;
@@ -443,6 +443,16 @@ footer a {
 
 .shape-fill {
   fill: #fff;
+}
+
+.aqi {
+  width: 100%;
+  background-color: #f0efed;
+}
+.aqi__bar {
+  width: 1%;
+  height: 1rem;
+  background-color: green;
 }
 
 .slideUp {

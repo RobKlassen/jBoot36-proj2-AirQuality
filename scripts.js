@@ -52,7 +52,7 @@ app.apiEndpointListCities = "http://api.airvisual.com/v2/cities";
 app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
 app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
 
-app.apiKey = "f54d55f6-4ef0-4a18-baa0-cf8f3273a20a";
+app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
 
 app.apiCountry = null;
 app.apiState = null;
@@ -103,9 +103,11 @@ app.printInfo = function(city) {
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
     mainUlElement.innerHTML = `
-    <li>${city.city}</li>
-    <li>${city.country}</li>
+    <h2>${city.city}, ${city.country}</h2>
     <li>Current AQIUS Pollution Index is: ${city.current.pollution.aqius}</li>
+    <div class="aqi">
+        <li class="aqi__bar"></li>
+    </div>
     <li>WEATHER</li>
     <li>Weather information from: ${city.current.weather.ts}</li>
     <img src="${'https://airvisual.com/images/'+city.current.weather.ic+".png"}" alt="weather icon">
@@ -115,6 +117,8 @@ app.printInfo = function(city) {
     <li>Current Wind Direction is coming from: ${city.current.weather.wd}°Clockwise from N</li>
     <li>Current Windspeed is: ${city.current.weather.ws}m/s</li>
     `
+
+    console.log(city.current.pollution.aqius);
     // console.log(mainUlElement);
 
     // console.log(city.location.coordinates);
