@@ -589,6 +589,8 @@ footer a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   height: 100%;
   width: 200px;
   margin-bottom: 3%;
@@ -610,4 +612,7 @@ footer a {
 .weatherBox p .windDirection1 {
   font-size: 35px;
   color: #b4c4ff;
+}
+.weatherBox li {
+  font-size: 0.8rem;
 }

@@ -88,10 +88,10 @@ app.printInfo = function(city) {
         <div class="weatherBox">
             <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
             <p><i class="fas fa-long-arrow-alt-down windDirection1"></i> ${cityWindKMH}<span> km/h</span></p>
+            <li>Weather information from: ${cityTimestamp}</li>
         </div>
 
         <div className="weatherText">
-            <li>Weather information from: ${cityTimestamp}</li>
             <li>Current temperature is: ${cityTemperature}°C</li>
             <li>Current humidity is: ${cityHumidity}%</li>
             <li>Current Barometric Atmospheric Pressure is: ${cityPressure}hPa</li>
@@ -103,19 +103,20 @@ app.printInfo = function(city) {
     const windDirectionElement = document.querySelector('.windDirection1');
     windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
     
-
     const movePollutionBar = function(){
+
         for (let i = 0; i < cityPollutionAQIUS+1; i++) {
             moveBar(i)
         }
+
         function moveBar(i) {
+
             setTimeout(() => {
                 let progressBar = document.querySelector('.pollutionBar');
-                progressBar.style.left = (i/2)+"%";
-                progressBar.style.transition = "ease all 0.15s";
-                let aqiLevel = 0;
-                return (aqiLevel + i)
-            }, 25 * i);
+                progressBar.style.left = (i/3)+"%";
+                progressBar.style.transition = "ease all .1s";
+            }, 100 * i);
+
         }
     }
     movePollutionBar();
