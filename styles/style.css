@@ -405,7 +405,7 @@ body {
 .main__container {
   background-color: #fff;
   width: 70vw;
-  height: 30vw;
+  height: 35vw;
   border-radius: 2rem;
   -webkit-animation: appear 1.5s ease-in-out forwards;
           animation: appear 1.5s ease-in-out forwards;

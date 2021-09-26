@@ -122,11 +122,20 @@ app.printInfo = function(city) {
 
     const movePollutionBar = function(){
         for (let i = 0; i < cityPollutionAQIUS+1; i++) {
+            
             setTimeout(() => {
                 let progressBar = document.querySelector('.pollutionBar');
                 progressBar.style.left = (i/3)+"%";
-                progressBar.style.transition = "ease all .1s";
-            }, 100 * i);
+
+                if (cityPollutionAQIUS > 100){
+                    progressBar.style.transition = "ease all .05s";
+                } else if (cityPollutionAQIUS < 100 && cityPollutionAQIUS > 50) {
+                    progressBar.style.transition = "ease all 1s";
+                } else if (cityPollutionAQIUS < 50) {
+                    progressBar.style.transition = "ease all 3s";
+                }
+                
+            }, 10 * i);
         }
     }
     movePollutionBar();
