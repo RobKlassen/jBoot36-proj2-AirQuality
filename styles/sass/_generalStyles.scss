@@ -121,12 +121,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 7vw;
+    padding: 5vw;
 
     &__container {
         background-color: $white;
         width: 70vw;
-        height: 40vw;
+        height: 30vw;
         border-radius: 2rem;
         animation: appear 1.5s ease-in-out forwards;
     }

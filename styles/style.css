@@ -400,12 +400,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 7vw;
+  padding: 5vw;
 }
 .main__container {
   background-color: #fff;
   width: 70vw;
-  height: 40vw;
+  height: 30vw;
   border-radius: 2rem;
   -webkit-animation: appear 1.5s ease-in-out forwards;
           animation: appear 1.5s ease-in-out forwards;
@@ -589,6 +589,8 @@ footer a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   height: 100%;
   width: 200px;
   margin-bottom: 3%;
@@ -610,4 +612,7 @@ footer a {
 .weatherBox p .windDirection1 {
   font-size: 35px;
   color: #b4c4ff;
+}
+.weatherBox li {
+  font-size: 0.8rem;
 }
