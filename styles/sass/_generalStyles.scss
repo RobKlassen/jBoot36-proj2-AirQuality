@@ -217,6 +217,12 @@ footer {
   }
 }
 
+.weather__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 
 // Animations
 

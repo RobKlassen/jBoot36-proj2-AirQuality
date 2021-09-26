@@ -6,7 +6,7 @@ app.apiEndpointListCities = "http://api.airvisual.com/v2/cities";
 app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
 app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
 
-app.apiKey = "a2793ab9-eff7-4732-9994-6e2320b1f247";
+app.apiKey = "7dec7e98-1085-48d5-aee4-7dbbe99389a5";
 
 app.apiCountry = null;
 app.apiState = null;
@@ -82,17 +82,21 @@ app.printInfo = function(city) {
         </li>
     </div>
     
-    <li>WEATHER</li>
+    <h3>WEATHER</h3>
+    <div class="weather__container">
+        
+        <div class="weatherBox">
+            <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
+            <p><i class="fas fa-long-arrow-alt-down windDirection1"></i> ${cityWindKMH}<span> km/h</span></p>
+        </div>
 
-    <div class="weatherBox">
-    <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
-    <p><i class="fas fa-long-arrow-alt-down windDirection1"></i> ${cityWindKMH}<span> km/h</span></p>
+        <div className="weatherText">
+            <li>Weather information from: ${cityTimestamp}</li>
+            <li>Current temperature is: ${cityTemperature}°C</li>
+            <li>Current humidity is: ${cityHumidity}%</li>
+            <li>Current Barometric Atmospheric Pressure is: ${cityPressure}hPa</li>
+        </div>
     </div>
-
-    <li>Weather information from: ${cityTimestamp}</li>
-    <li>Current temperature is: ${cityTemperature}°C</li>
-    <li>Current humidity is: ${cityHumidity}%</li>
-    <li>Current Barometric Atmospheric Pressure is: ${cityPressure}hPa</li>
  
     `;
 

@@ -63,6 +63,9 @@
 // f54d55f6-4ef0-4a18-baa0-cf8f3273a20a
 // ROB CURRENT USE (LOL)
 
+//Jun's New API Key: 
+// 7dec7e98-1085-48d5-aee4-7dbbe99389a5
+
 
 // TEST SEARCH PARAMS
 // app.apiCountry = "Canada";

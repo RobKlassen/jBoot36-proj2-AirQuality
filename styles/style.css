@@ -489,6 +489,17 @@ footer a {
   right: 0;
 }
 
+.weather__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .slideUp {
   -webkit-animation: slideUp 0.8s ease-in-out forwards;
           animation: slideUp 0.8s ease-in-out forwards;
