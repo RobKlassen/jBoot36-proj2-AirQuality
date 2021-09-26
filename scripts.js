@@ -53,10 +53,24 @@ app.printInfo = function(city) {
     let cityTemperature = city.current.weather.tp;
     let cityHumidity = city.current.weather.hu;
     let cityPressure = city.current.weather.pr;
-    let cityTimestamp = city.current.weather.ts;
+
+    let cityTimestamp = new Date (city.current.weather.ts);
+    // const timestampDate = new Date (cityTimestamp);
+    console.log(cityTimestamp);
+    let month = cityTimestamp.getMonth();
+    console.log(month);
+    
     let cityLongitude = city.location.coordinates[0];
     let cityLatitude = city.location.coordinates[1];
+
     let cityWeatherIcon = city.current.weather.ic;
+    if (cityWeatherIcon == "03n"){
+        cityWeatherIcon = "03d";
+    }else if(cityWeatherIcon == "04n"){
+        cityWeatherIcon = "04d";
+    }else{
+        console.log("ERRORRORRO");
+    }
 
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
@@ -67,6 +81,8 @@ app.printInfo = function(city) {
     main.scrollIntoView();
 
     const mainUlElement = document.querySelector('.main__apiInfo ul');
+
+    console.log(cityWeatherIcon);
 
     mainUlElement.innerHTML = 
 
@@ -103,20 +119,14 @@ app.printInfo = function(city) {
     const windDirectionElement = document.querySelector('.windDirection1');
     windDirectionElement.style.transform = `rotate(${cityWindDirection}deg)`;
     
+
     const movePollutionBar = function(){
-
         for (let i = 0; i < cityPollutionAQIUS+1; i++) {
-            moveBar(i)
-        }
-
-        function moveBar(i) {
-
             setTimeout(() => {
                 let progressBar = document.querySelector('.pollutionBar');
                 progressBar.style.left = (i/3)+"%";
                 progressBar.style.transition = "ease all .1s";
             }, 100 * i);
-
         }
     }
     movePollutionBar();
