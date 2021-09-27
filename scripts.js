@@ -63,6 +63,7 @@ app.printInfo = function(city) {
         month : 'short',
         year : 'numeric',
         hour : 'numeric',
+        minute : 'numeric'
     }
     const cityTimestamp = new Intl.DateTimeFormat("en-US", dateFormatOptions).format(cityTimestampRaw);
 
@@ -71,8 +72,14 @@ app.printInfo = function(city) {
         cityWeatherIcon = "03d";
     }else if(cityWeatherIcon == "04n"){
         cityWeatherIcon = "04d";
-    }else{
-        console.log("ERRORRORRO");
+    }else if(cityWeatherIcon == "09n"){
+        cityWeatherIcon = "09d";
+    }else if(cityWeatherIcon == "11n"){
+        cityWeatherIcon = "11d";
+    }else if(cityWeatherIcon == "13n"){
+        cityWeatherIcon = "13d";
+    }else if(cityWeatherIcon == "50n" ){
+        cityWeatherIcon = "50d";
     }
 
     const header = document.querySelector('.header');
@@ -176,7 +183,7 @@ app.getApiData = async function(endpoint, nextSelectorID, step, currentDropdown)
     .then(function(apiObject){
 
         const nextSelection = document.querySelector(nextSelectorID);
-        const defaultOption = document.createElement('option')
+        const defaultOption = document.createElement('option');
         defaultOption.selected = true;
         defaultOption.disabled = true;
         defaultOption.defaultSelected = true;
