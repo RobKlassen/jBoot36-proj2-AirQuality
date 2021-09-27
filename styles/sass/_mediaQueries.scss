@@ -1,0 +1,71 @@
+@media (max-width: 940px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .header__container__text {
+        width: 100%;
+    }
+
+    .header__container__img {
+        position: absolute;
+        width: 70vw;
+        z-index: -1;
+        opacity: .5;
+
+        & img {
+            opacity: 0.3;
+        }
+    }
+
+    .main__container {
+        height: 70vw;
+    }
+
+    .weatherBox {
+        margin: 5% 0 7% 0;
+    }
+
+    .weather__container {
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 660px) {
+    .main__apiInfo {
+        padding: 7%;
+
+        & li {
+            margin-bottom: 7%;
+            font-size: 0.8rem
+        }
+    }
+    
+    .main__container {
+        height: 80vh;
+    }
+
+    
+}
+
+
+@media (max-width: 480px) {
+    .main {
+        padding: 0;
+        margin-bottom: 10%;
+
+        & h3 {
+            margin-top: 20%;
+        }
+    }
+
+    .form__legend {
+        font-size: 0.8rem;
+        margin: 0 0 5% 0;
+    }
+
+    select {
+        font-size: 0.8rem;
+    }
+}
