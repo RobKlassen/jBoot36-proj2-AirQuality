@@ -1,10 +1,10 @@
 const app = {};
 
-app.apiEndpointListCountries = "http://api.airvisual.com/v2/countries";
-app.apiEndpointListStates = "http://api.airvisual.com/v2/states";
-app.apiEndpointListCities = "http://api.airvisual.com/v2/cities";
-app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
-app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
+app.apiEndpointListCountries = "https://api.airvisual.com/v2/countries";
+app.apiEndpointListStates = "https://api.airvisual.com/v2/states";
+app.apiEndpointListCities = "https://api.airvisual.com/v2/cities";
+app.apiEndpointCityInfo = "https://api.airvisual.com/v2/city";
+app.apiEndpointNearestCity = "https://api.airvisual.com/v2/nearest_city";
 
 app.apiKey = "7dec7e98-1085-48d5-aee4-7dbbe99389a5";
 
@@ -73,14 +73,14 @@ app.printInfo = function(city) {
         cityWeatherIcon = "03d";
     }else if(cityWeatherIcon == "04n"){
         cityWeatherIcon = "04d";
-    }  else if (cityWeatherIcon == "09n") {
-        cityWeatherIcon = "09d"
-    } else if (cityWeatherIcon == "11n") {
-        cityWeatherIcon = "11d"
-    } else if (cityWeatherIcon == "13n") {
-        cityWeatherIcon = "13d"
-    } else if (cityWeatherIcon == "50n") {
-        cityWeatherIcon = "50d"
+    }else if(cityWeatherIcon == "09n"){
+        cityWeatherIcon = "09d";
+    }else if(cityWeatherIcon == "11n"){
+        cityWeatherIcon = "11d";
+    }else if(cityWeatherIcon == "13n"){
+        cityWeatherIcon = "13d";
+    }else if(cityWeatherIcon == "50n" ){
+        cityWeatherIcon = "50d";
     }
 
     const header = document.querySelector('.header');
@@ -184,7 +184,7 @@ app.getApiData = async function(endpoint, nextSelectorID, step, currentDropdown)
     .then(function(apiObject){
 
         const nextSelection = document.querySelector(nextSelectorID);
-        const defaultOption = document.createElement('option')
+        const defaultOption = document.createElement('option');
         defaultOption.selected = true;
         defaultOption.disabled = true;
         defaultOption.defaultSelected = true;
