@@ -1,10 +1,10 @@
 const app = {};
 
-app.apiEndpointListCountries = "http://api.airvisual.com/v2/countries";
-app.apiEndpointListStates = "http://api.airvisual.com/v2/states";
-app.apiEndpointListCities = "http://api.airvisual.com/v2/cities";
-app.apiEndpointCityInfo = "http://api.airvisual.com/v2/city";
-app.apiEndpointNearestCity = "http://api.airvisual.com/v2/nearest_city";
+app.apiEndpointListCountries = "https://api.airvisual.com/v2/countries";
+app.apiEndpointListStates = "https://api.airvisual.com/v2/states";
+app.apiEndpointListCities = "https://api.airvisual.com/v2/cities";
+app.apiEndpointCityInfo = "https://api.airvisual.com/v2/city";
+app.apiEndpointNearestCity = "https://api.airvisual.com/v2/nearest_city";
 
 app.apiKey = "7dec7e98-1085-48d5-aee4-7dbbe99389a5";
 
