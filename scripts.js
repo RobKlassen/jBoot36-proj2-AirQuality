@@ -44,6 +44,9 @@ app.createDropdown = function(selectList, defaultOption, nextSelection, step){
 }
 
 app.printInfo = function(city) {
+    let cityLongitude = city.location.coordinates[0];
+    let cityLatitude = city.location.coordinates[1];
+
     let cityName = city.city;
     let countryName = city.country;
     let cityWindDirection = city.current.weather.wd;
@@ -54,14 +57,14 @@ app.printInfo = function(city) {
     let cityHumidity = city.current.weather.hu;
     let cityPressure = city.current.weather.pr;
 
-    let cityTimestamp = new Date (city.current.weather.ts);
-    // const timestampDate = new Date (cityTimestamp);
-    console.log(cityTimestamp);
-    let month = cityTimestamp.getMonth();
-    console.log(month);
-    
-    let cityLongitude = city.location.coordinates[0];
-    let cityLatitude = city.location.coordinates[1];
+    let cityTimestampRaw = new Date (city.current.weather.ts);
+    const dateFormatOptions = {
+        day : 'numeric',
+        month : 'short',
+        year : 'numeric',
+        hour : 'numeric',
+    }
+    const cityTimestamp = new Intl.DateTimeFormat("en-US", dateFormatOptions).format(cityTimestampRaw);
 
     let cityWeatherIcon = city.current.weather.ic;
     if (cityWeatherIcon == "03n"){
@@ -104,7 +107,7 @@ app.printInfo = function(city) {
         <div class="weatherBox">
             <img src="${'https://airvisual.com/images/'+cityWeatherIcon+".png"}" alt="weather icon" class="weatherIcon">
             <p><i class="fas fa-long-arrow-alt-down windDirection1"></i> ${cityWindKMH}<span> km/h</span></p>
-            <li>Weather information from: ${cityTimestamp}</li>
+            <li>${cityTimestamp}</li>
         </div>
 
         <div className="weatherText">
@@ -201,6 +204,7 @@ app.getSelection = function(){
 
     countrySelector.addEventListener('change', function(){
         app.apiCountry = this.value;
+
         app.getApiData(app.apiEndpointListStates, '#stateSelection', "getStates", countrySelector)
         app.clearSelection('#stateSelection');
         app.clearSelection('#citySelection');
@@ -218,7 +222,7 @@ app.getSelection = function(){
     });
 }
 
-app.init = function(){   
+app.init = function(){
     app.getApiData(app.apiEndpointNearestCity, null, "getNearest", null);
     app.getApiData(app.apiEndpointListCountries, '#countrySelection', "getCountries", null);
     app.clearSelection('#stateSelection');
