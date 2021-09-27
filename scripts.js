@@ -65,6 +65,7 @@ app.printInfo = function(city) {
         hour : 'numeric',
         minute : 'numeric'
     }
+
     const cityTimestamp = new Intl.DateTimeFormat("en-US", dateFormatOptions).format(cityTimestampRaw);
 
     let cityWeatherIcon = city.current.weather.ic;
